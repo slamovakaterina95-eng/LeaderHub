@@ -1,323 +1,42 @@
 <!doctype html>
 <html lang="cs">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#173f35">
-  <title>LeaderHub by Kačka</title>
-  <style>
-    :root{
-      --bg:#f2f6f4;--card:#fff;--text:#17382f;--muted:#71817b;
-      --brand:#1d6f5b;--brand2:#154b3f;--soft:#e7f3ee;--line:#dce7e2;
-      --danger:#ad3e3e;--shadow:0 12px 34px rgba(17,66,54,.10);
-      --r:22px
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);font-size:18px}
-    button,input,select,textarea{font:inherit}
-    button{cursor:pointer;border:0;border-radius:14px;padding:13px 16px;font-weight:800}
-    input,select,textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff}
-    textarea{min-height:110px;resize:vertical}
-    .hidden{display:none!important}.muted{color:var(--muted)}
-    .primary{background:var(--brand);color:#fff}.secondary{background:var(--soft);color:var(--text)}
-    .danger{background:#fdeaea;color:var(--danger)}
-    .auth{min-height:100vh;display:grid;place-items:center;padding:24px}
-    .auth-card{width:min(500px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow)}
-    .auth-card h1{font-size:40px;margin:0}.auth-card p{margin:6px 0 22px}.stack{display:grid;gap:13px}
-    .app{min-height:100vh;display:grid;grid-template-columns:270px 1fr}
-    aside{background:linear-gradient(180deg,var(--brand2),#0f342c);color:#fff;padding:calc(28px + env(safe-area-inset-top)) 20px 24px;position:sticky;top:0;height:100vh}
-    .logo{font-size:30px;font-weight:900}.tag{font-size:14px;opacity:.72;margin:4px 0 28px}
-    nav{display:grid;gap:8px}nav button{background:transparent;color:#fff;text-align:left}nav button.active{background:#ffffff20}
-    main{width:100%;max-width:1500px;padding:32px}
-    .section{display:none}.section.active{display:block}
-    .top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}
-    h1{margin:0;font-size:36px}h2,h3{margin-top:0}
-    .grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.two{grid-template-columns:1.2fr 1fr}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:21px;box-shadow:var(--shadow)}
-    .stat strong{display:block;font-size:38px;margin-top:8px}
-    .item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}
-    .row{display:flex;justify-content:space-between;align-items:center;gap:12px}
-    .actions{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;background:var(--soft);padding:5px 10px;border-radius:999px;font-size:13px;margin-top:6px}
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input,.toolbar select{max-width:320px}
-    .modal{position:fixed;inset:0;background:#071c17aa;display:none;place-items:center;padding:18px;z-index:20}.modal.open{display:grid}
-    .modalbox{background:#fff;width:min(760px,100%);max-height:92vh;overflow:auto;border-radius:25px;padding:22px}
-    .formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}
-    label{display:block;font-size:14px;font-weight:850;margin-bottom:6px}
-    .message{padding:11px 13px;border-radius:12px;background:#fff6db;color:#705400}
-    .mobile{display:none}
-    @media(max-width:1050px){
-      .app{grid-template-columns:1fr}aside{display:none}
-      main{padding:calc(22px + env(safe-area-inset-top)) 20px calc(96px + env(safe-area-inset-bottom))}
-      .mobile{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;background:#ffffffee;border-top:1px solid var(--line);padding:9px 8px calc(9px + env(safe-area-inset-bottom));backdrop-filter:blur(14px);z-index:10}
-      .mobile button{background:transparent;color:var(--muted);padding:10px 5px;font-size:13px}.mobile button.active{background:var(--soft);color:var(--brand2)}
-      .stats{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:700px){
-      html,body{font-size:17px}main{padding-left:14px;padding-right:14px}.top{align-items:flex-start;flex-direction:column}
-      h1{font-size:31px}.stats,.two,.formgrid{grid-template-columns:1fr}.row{align-items:flex-start;flex-direction:column}.toolbar input,.toolbar select{max-width:none}
-    }
-  </style>
-</head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173f35">
+<title>LeaderHub by Kačka</title>
+<style>
+:root{--bg:#f2f6f4;--card:#fff;--text:#17382f;--muted:#71817b;--brand:#1d6f5b;--brand2:#154b3f;--soft:#e7f3ee;--line:#dce7e2;--danger:#ad3e3e;--shadow:0 12px 34px rgba(17,66,54,.10)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);font-size:18px}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:14px;padding:13px 16px;font-weight:800}input,select,textarea{width:100%;padding:14px;border:1px solid var(--line);border-radius:13px;background:#fff}textarea{min-height:105px}.hidden{display:none!important}.muted{color:var(--muted)}.primary{background:var(--brand);color:#fff}.secondary{background:var(--soft);color:var(--text)}.danger{background:#fdeaea;color:var(--danger)}
+.auth{min-height:100vh;display:grid;place-items:center;padding:24px}.auth-card{width:min(500px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:30px;box-shadow:var(--shadow)}.auth-card h1{font-size:40px;margin:0}.stack{display:grid;gap:13px}.app{min-height:100vh;display:grid;grid-template-columns:270px 1fr}aside{background:linear-gradient(180deg,var(--brand2),#0f342c);color:#fff;padding:28px 20px;position:sticky;top:0;height:100vh}.logo{font-size:30px;font-weight:900}.tag{font-size:14px;opacity:.72;margin:4px 0 28px}nav{display:grid;gap:8px}nav button{background:transparent;color:#fff;text-align:left}nav button.active{background:#ffffff20}main{width:100%;max-width:1500px;padding:32px}.section{display:none}.section.active{display:block}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:22px}h1{margin:0;font-size:36px}h2,h3{margin-top:0}.grid{display:grid;gap:18px}.stats{grid-template-columns:repeat(4,minmax(0,1fr))}.two{grid-template-columns:1.2fr 1fr}.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:21px;box-shadow:var(--shadow)}.stat strong{display:block;font-size:38px;margin-top:8px}.item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;background:var(--soft);padding:5px 10px;border-radius:999px;font-size:13px;margin-top:6px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}.toolbar input,.toolbar select{max-width:340px}.modal{position:fixed;inset:0;background:#071c17aa;display:none;place-items:center;padding:18px;z-index:20}.modal.open{display:grid}.modalbox{background:#fff;width:min(760px,100%);max-height:92vh;overflow:auto;border-radius:25px;padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}label{display:block;font-size:14px;font-weight:850;margin-bottom:6px}.message{padding:11px 13px;border-radius:12px;background:#fff6db;color:#705400}.mobile{display:none}
+.goal-card{position:relative;overflow:hidden;transition:.25s}.goal-card:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;right:-80px;top:-100px;background:currentColor;opacity:.07}.goal-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}.goal-percent{font-size:46px;font-weight:950;line-height:1}.goal-count{font-size:21px;font-weight:900;margin-top:7px}.goal-track{height:17px;background:#ffffffa6;border-radius:999px;overflow:hidden;margin:20px 0 12px;border:1px solid #ffffffa8}.goal-fill{height:100%;width:0;border-radius:999px;background:currentColor;transition:width .45s}.goal-message{font-weight:800}.goal-edit{display:flex;gap:9px;align-items:center;margin-top:18px}.goal-edit input{max-width:110px;background:#ffffffbd}.goal-red{color:#b42318;background:linear-gradient(135deg,#fff1f0,#ffe4e1);border-color:#ffd0ca}.goal-orange{color:#c85b00;background:linear-gradient(135deg,#fff7ed,#ffedd5);border-color:#fed7aa}.goal-yellow{color:#9a7100;background:linear-gradient(135deg,#fffbea,#fff3bd);border-color:#f5df79}.goal-green{color:#18724f;background:linear-gradient(135deg,#edfdf5,#d9f7e8);border-color:#a9e8ca}.goal-gold{color:#8a6400;background:linear-gradient(135deg,#fff8d9,#f7e7a1);border-color:#e8ca57}.status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:7px}.s-new{background:#9ca3af}.s-demo{background:#eab308}.s-wait{background:#f97316}.s-client{background:#8b5cf6}.s-no{background:#ef4444}
+@media(max-width:1050px){.app{grid-template-columns:1fr}aside{display:none}main{padding:22px 20px 96px}.mobile{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;background:#ffffffee;border-top:1px solid var(--line);padding:9px 8px;backdrop-filter:blur(14px);z-index:10}.mobile button{background:transparent;color:var(--muted);padding:10px 5px;font-size:13px}.mobile button.active{background:var(--soft);color:var(--brand2)}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){html,body{font-size:17px}main{padding-left:14px;padding-right:14px}.top{align-items:flex-start;flex-direction:column}h1{font-size:31px}.stats,.two,.formgrid{grid-template-columns:1fr}.row{align-items:flex-start;flex-direction:column}.toolbar input,.toolbar select{max-width:none}.goal-percent{font-size:40px}.goal-edit{align-items:stretch;flex-direction:column}.goal-edit input{max-width:none}}
+</style></head>
 <body>
-<div id="authView" class="auth">
-  <div class="auth-card">
-    <h1>LeaderHub</h1>
-    <p class="muted">by Kačka · bezpečné přihlášení a synchronizace</p>
-    <div class="stack">
-      <input id="email" type="email" autocomplete="email" placeholder="E-mail">
-      <input id="password" type="password" autocomplete="current-password" placeholder="Heslo (minimálně 6 znaků)">
-      <button id="loginBtn" class="primary">Přihlásit se</button>
-      <button id="signupBtn" class="secondary">Vytvořit účet</button>
-      <button id="resetBtn" class="secondary">Zapomenuté heslo</button>
-      <div id="authMsg" class="muted"></div>
-    </div>
-  </div>
-</div>
-
-<div id="appView" class="app hidden">
-  <aside>
-    <div class="logo">LeaderHub</div>
-    <div class="tag">by Kačka · Thermomix Team Leader</div>
-    <nav id="desktopNav"></nav>
-  </aside>
-
-  <main>
-    <section id="dashboard" class="section active">
-      <div class="top">
-        <div><h1>Hezký den, Kačko 👋</h1><div id="today" class="muted"></div></div>
-        <button id="logoutBtn" class="secondary">Odhlásit</button>
-      </div>
-      <div id="dbWarning" class="message hidden" style="margin-bottom:16px"></div>
-      <div class="grid stats">
-        <div class="card stat"><span class="muted">Kontakty</span><strong id="statContacts">0</strong></div>
-        <div class="card stat"><span class="muted">Aktivní úkoly</span><strong id="statTasks">0</strong></div>
-        <div class="card stat"><span class="muted">Ukázky tento měsíc</span><strong id="statDemos">0</strong></div>
-        <div class="card stat"><span class="muted">Prodeje tento měsíc</span><strong id="statSales">0</strong></div>
-      </div>
-      <div class="grid two" style="margin-top:18px">
-        <div class="card"><h3>Nejbližší úkoly</h3><div id="dashTasks"></div></div>
-        <div class="card"><h3>Nejbližší ukázky</h3><div id="dashDemos"></div></div>
-      </div>
-    </section>
-
-    <section id="contacts" class="section">
-      <div class="top"><div><h1>Kontakty</h1><div class="muted">Zájemci, zákazníci a hostitelky</div></div><button class="primary" onclick="openContact()">+ Nový kontakt</button></div>
-      <div class="card"><div class="toolbar"><input id="contactSearch" placeholder="Hledat kontakt..."><select id="contactFilter"><option value="">Všechny stavy</option><option>Nový kontakt</option><option>Domluvit ukázku</option><option>Po ukázce</option><option>Objednáno</option><option>Zákazník</option></select></div><div id="contactsList"></div></div>
-    </section>
-
-    <section id="tasks" class="section">
-      <div class="top"><div><h1>Úkoly</h1><div class="muted">Follow-up a připomínky</div></div><button class="primary" onclick="openTask()">+ Nový úkol</button></div>
-      <div class="card"><div id="tasksList"></div></div>
-    </section>
-
-    <section id="demos" class="section">
-      <div class="top"><div><h1>Ukázky</h1><div class="muted">Termíny a výsledky</div></div><button class="primary" onclick="openDemo()">+ Nová ukázka</button></div>
-      <div class="card"><div id="demosList"></div></div>
-    </section>
-
-    <section id="team" class="section">
-      <div class="top"><div><h1>Tým</h1><div class="muted">Členové týmu a měsíční výsledky</div></div><button class="primary" onclick="openMember()">+ Přidat člena</button></div>
-      <div class="card"><div id="teamList"></div></div>
-    </section>
-  </main>
-  <nav id="mobileNav" class="mobile"></nav>
-</div>
-
-<div id="modal" class="modal">
-  <div class="modalbox">
-    <div class="row"><h2 id="modalTitle"></h2><button class="secondary" onclick="closeModal()">×</button></div>
-    <form id="modalForm">
-      <div id="modalFields" class="formgrid"></div>
-      <div class="actions" style="justify-content:flex-end;margin-top:18px">
-        <button type="button" class="secondary" onclick="closeModal()">Zrušit</button>
-        <button class="primary">Uložit</button>
-      </div>
-    </form>
-  </div>
-</div>
-
+<div id="authView" class="auth"><div class="auth-card"><h1>LeaderHub</h1><p class="muted">by Kačka · bezpečné přihlášení a synchronizace</p><div class="stack"><input id="email" type="email" placeholder="E-mail"><input id="password" type="password" placeholder="Heslo (minimálně 6 znaků)"><button id="loginBtn" class="primary">Přihlásit se</button><button id="signupBtn" class="secondary">Vytvořit účet</button><button id="resetBtn" class="secondary">Zapomenuté heslo</button><div id="authMsg" class="muted"></div></div></div></div>
+<div id="appView" class="app hidden"><aside><div class="logo">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader</div><nav id="desktopNav"></nav></aside><main>
+<section id="dashboard" class="section active"><div class="top"><div><h1>Hezký den, Kačko 👋</h1><div id="today" class="muted"></div></div><button id="logoutBtn" class="secondary">Odhlásit</button></div><div id="dbWarning" class="message hidden" style="margin-bottom:16px"></div>
+<div id="goalCard" class="card goal-card goal-red" style="margin-bottom:18px"><div class="goal-head"><div><h3 style="margin-bottom:6px">🎯 Měsíční cíl</h3><div id="goalCount" class="goal-count">0 / 10 Thermomixů</div></div><div id="goalPercent" class="goal-percent">0 %</div></div><div class="goal-track"><div id="goalFill" class="goal-fill"></div></div><div id="goalMessage" class="goal-message">Začínáme nový měsíc. 💪</div><div class="goal-edit"><span>Nastavit cíl:</span><input id="goalInput" type="number" min="1" value="10"><button id="saveGoalBtn" class="secondary">Uložit cíl</button></div></div>
+<div class="grid stats"><div class="card stat"><span class="muted">Zákazníci</span><strong id="statContacts">0</strong></div><div class="card stat"><span class="muted">Aktivní úkoly</span><strong id="statTasks">0</strong></div><div class="card stat"><span class="muted">Ukázky tento měsíc</span><strong id="statDemos">0</strong></div><div class="card stat"><span class="muted">Prodeje tento měsíc</span><strong id="statSales">0</strong></div></div><div class="grid two" style="margin-top:18px"><div class="card"><h3>Nejbližší úkoly</h3><div id="dashTasks"></div></div><div class="card"><h3>Nejbližší ukázky</h3><div id="dashDemos"></div></div></div></section>
+<section id="contacts" class="section"><div class="top"><div><h1>Zákazníci</h1><div class="muted">Zájemci, klienti a doporučení</div></div><button class="primary" onclick="openContact()">+ Nový zákazník</button></div><div class="card"><div class="toolbar"><input id="contactSearch" placeholder="Hledat podle jména, telefonu nebo e-mailu..."><select id="contactFilter"><option value="">Všechny stavy</option><option>Nový zájemce</option><option>Domluvená ukázka</option><option>Čeká na vyjádření</option><option>Klient</option><option>Nezájem</option></select></div><div id="contactsList"></div></div></section>
+<section id="tasks" class="section"><div class="top"><div><h1>Úkoly</h1><div class="muted">Follow-up a připomínky</div></div><button class="primary" onclick="openTask()">+ Nový úkol</button></div><div class="card"><div id="tasksList"></div></div></section>
+<section id="demos" class="section"><div class="top"><div><h1>Kalendář</h1><div class="muted">Ukázky, schůzky a školení</div></div><button class="primary" onclick="openDemo()">+ Nová událost</button></div><div class="card"><div id="demosList"></div></div></section>
+<section id="team" class="section"><div class="top"><div><h1>Tým</h1><div class="muted">Členové týmu a měsíční výsledky</div></div><button class="primary" onclick="openMember()">+ Přidat člena</button></div><div class="card"><div id="teamList"></div></div></section>
+</main><nav id="mobileNav" class="mobile"></nav></div>
+<div id="modal" class="modal"><div class="modalbox"><div class="row"><h2 id="modalTitle"></h2><button class="secondary" onclick="closeModal()">×</button></div><form id="modalForm"><div id="modalFields" class="formgrid"></div><div class="actions" style="justify-content:flex-end;margin-top:18px"><button type="button" class="secondary" onclick="closeModal()">Zrušit</button><button class="primary">Uložit</button></div></form></div></div>
 <script type="module">
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-
-const SUPABASE_URL='https://brniiebtdfjrbggyyiei.supabase.co';
-const SUPABASE_KEY='sb_publishable_MK5VMec_VFo3gvQMvxyeQw_DpazDGyr';
-const sb=createClient(SUPABASE_URL,SUPABASE_KEY);
-
-const NAV=[['dashboard','Přehled'],['contacts','Kontakty'],['tasks','Úkoly'],['demos','Ukázky'],['team','Tým']];
-let contacts=[],tasks=[],demos=[],team=[],mode='',editId=null;
-
-const $=s=>document.querySelector(s);
-const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
-const fmt=d=>d?new Date(d).toLocaleDateString('cs-CZ'):'';
-const monthKey=()=>new Date().toISOString().slice(0,7);
-
-$('#today').textContent=new Date().toLocaleDateString('cs-CZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-$('#desktopNav').innerHTML=NAV.map((x,i)=>`<button data-page="${x[0]}" class="${i?'':'active'}">${x[1]}</button>`).join('');
-$('#mobileNav').innerHTML=NAV.map((x,i)=>`<button data-page="${x[0]}" class="${i?'':'active'}">${x[1]}</button>`).join('');
-
-document.querySelectorAll('[data-page]').forEach(btn=>btn.onclick=()=>showPage(btn.dataset.page));
-function showPage(id){
-  document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===id));
-  document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===id));
-  scrollTo(0,0);
-}
-
-function authMessage(text){$('#authMsg').textContent=text}
-async function showSession(){
-  const {data:{session}}=await sb.auth.getSession();
-  $('#authView').classList.toggle('hidden',!!session);
-  $('#appView').classList.toggle('hidden',!session);
-  if(session) await loadAll();
-}
-$('#loginBtn').onclick=async()=>{
-  authMessage('Přihlašuji…');
-  const {error}=await sb.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});
-  authMessage(error?error.message:'');
-  await showSession();
-};
-$('#signupBtn').onclick=async()=>{
-  authMessage('Vytvářím účet…');
-  const {error}=await sb.auth.signUp({
-    email:$('#email').value.trim(),
-    password:$('#password').value,
-    options:{emailRedirectTo:location.origin+location.pathname}
-  });
-  authMessage(error?error.message:'Účet byl vytvořen. Zkontroluj potvrzovací e-mail.');
-  await showSession();
-};
-$('#resetBtn').onclick=async()=>{
-  const email=$('#email').value.trim();
-  if(!email)return authMessage('Nejdřív zadej e-mail.');
-  const {error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});
-  authMessage(error?error.message:'Odkaz pro změnu hesla byl odeslán.');
-};
-$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();await showSession()};
-sb.auth.onAuthStateChange(()=>setTimeout(showSession,0));
-
-async function loadAll(){
-  const [c,t,d,m]=await Promise.all([
-    sb.from('contacts').select('*').order('created_at',{ascending:false}),
-    sb.from('tasks').select('*').order('due_at',{ascending:true,nullsFirst:false}),
-    sb.from('demos').select('*').order('demo_date',{ascending:true}),
-    sb.from('team_members').select('*').order('full_name',{ascending:true})
-  ]);
-  const errors=[c.error,t.error,d.error,m.error].filter(Boolean);
-  $('#dbWarning').classList.toggle('hidden',!errors.length);
-  $('#dbWarning').textContent=errors.length?'Některá část databáze není dostupná: '+errors[0].message:'';
-  contacts=c.data||[];tasks=t.data||[];demos=d.data||[];team=m.data||[];
-  renderAll();
-}
-function renderAll(){renderDashboard();renderContacts();renderTasks();renderDemos();renderTeam()}
-function renderDashboard(){
-  const active=tasks.filter(x=>!x.completed);
-  const md=demos.filter(x=>(x.demo_date||'').slice(0,7)===monthKey());
-  $('#statContacts').textContent=contacts.length;
-  $('#statTasks').textContent=active.length;
-  $('#statDemos').textContent=md.length;
-  $('#statSales').textContent=md.reduce((a,x)=>a+(Number(x.sale_count)||0),0);
-  $('#dashTasks').innerHTML=active.slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.due_at)}</div></div>`).join('')||'<div class="muted">Žádné aktivní úkoly</div>';
-  $('#dashDemos').innerHTML=demos.filter(x=>new Date(x.demo_date)>=new Date()).slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div></div>`).join('')||'<div class="muted">Žádné plánované ukázky</div>';
-}
-function renderContacts(){
-  const q=$('#contactSearch').value.toLowerCase(),f=$('#contactFilter').value;
-  const a=contacts.filter(x=>(x.full_name+x.phone+x.email).toLowerCase().includes(q)&&(!f||x.status===f));
-  $('#contactsList').innerHTML=a.map(x=>`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill">${esc(x.status)}</span>${x.follow_up_date?`<div class="muted">Follow-up: ${fmt(x.follow_up_date)}</div>`:''}</div><div class="actions"><button class="secondary" onclick="openContact('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('contacts','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné kontakty</div>';
-}
-function renderTasks(){
-  $('#tasksList').innerHTML=tasks.map(x=>`<div class="item row"><div><label><input style="width:auto" type="checkbox" ${x.completed?'checked':''} onchange="toggleTask('${x.id}',this.checked)"> <b style="${x.completed?'text-decoration:line-through;opacity:.55':''}">${esc(x.title)}</b></label><div class="muted">${fmt(x.due_at)} · ${esc(x.priority||'Normální')}</div></div><div class="actions"><button class="secondary" onclick="openTask('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('tasks','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné úkoly</div>';
-}
-function renderDemos(){
-  $('#demosList').innerHTML=demos.map(x=>`<div class="item row"><div><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div><span class="pill">${esc(x.result||'Plánovaná')}</span><span class="pill">Prodeje: ${Number(x.sale_count)||0}</span></div><div class="actions"><button class="secondary" onclick="openDemo('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('demos','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné ukázky</div>';
-}
-function renderTeam(){
-  $('#teamList').innerHTML=team.map(x=>`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill">Cíl: ${Number(x.monthly_goal)||0}</span><span class="pill">Prodeje: ${Number(x.monthly_sales)||0}</span></div><div class="actions"><button class="secondary" onclick="openMember('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('team_members','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádní členové týmu</div>';
-}
-$('#contactSearch').oninput=renderContacts;$('#contactFilter').onchange=renderContacts;
-
-window.openContact=id=>openForm('contact',id);
-window.openTask=id=>openForm('task',id);
-window.openDemo=id=>openForm('demo',id);
-window.openMember=id=>openForm('member',id);
-
-function openForm(type,id){
-  mode=type;editId=id||null;
-  const arr=type==='contact'?contacts:type==='task'?tasks:type==='demo'?demos:team;
-  const o=arr.find(x=>x.id===id)||{};
-  $('#modalTitle').textContent=(id?'Upravit ':'Přidat ')+(type==='contact'?'kontakt':type==='task'?'úkol':type==='demo'?'ukázku':'člena týmu');
-  $('#modalFields').innerHTML=fields(type,o);
-  $('#modal').classList.add('open');
-}
-function fields(type,o){
-  if(type==='contact')return `
-    <div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div>
-    <div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div>
-    <div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div>
-    <div><label>Stav</label><select name="status">${['Nový kontakt','Domluvit ukázku','Po ukázce','Objednáno','Zákazník','Neaktivní'].map(v=>`<option ${o.status===v?'selected':''}>${v}</option>`).join('')}</select></div>
-    <div><label>Typ kontaktu</label><select name="contact_type">${['Zájemce','Zákazník','Hostitelka','Doporučení','Jiné'].map(v=>`<option ${o.contact_type===v?'selected':''}>${v}</option>`).join('')}</select></div>
-    <div><label>Město</label><input name="city" value="${esc(o.city)}"></div>
-    <div><label>Follow-up</label><input name="follow_up_date" type="date" value="${esc(o.follow_up_date)}"></div>
-    <div><label>Další krok</label><input name="next_step" value="${esc(o.next_step)}"></div>
-    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;
-  if(type==='task')return `
-    <div class="full"><label>Název úkolu</label><input name="title" required value="${esc(o.title)}"></div>
-    <div><label>Termín</label><input name="due_at" type="datetime-local" value="${o.due_at?o.due_at.slice(0,16):''}"></div>
-    <div><label>Priorita</label><select name="priority">${['Nízká','Normální','Vysoká'].map(v=>`<option ${o.priority===v?'selected':''}>${v}</option>`).join('')}</select></div>
-    <div><label><input style="width:auto" name="completed" type="checkbox" ${o.completed?'checked':''}> Hotovo</label></div>
-    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;
-  if(type==='demo')return `
-    <div class="full"><label>Název</label><input name="title" required value="${esc(o.title||'Ukázka Thermomixu')}"></div>
-    <div><label>Datum a čas</label><input name="demo_date" type="datetime-local" required value="${o.demo_date?o.demo_date.slice(0,16):''}"></div>
-    <div><label>Místo</label><input name="place" value="${esc(o.place)}"></div>
-    <div><label>Výsledek</label><select name="result">${['Plánovaná','Proběhla','Zrušená','Přesunutá'].map(v=>`<option ${o.result===v?'selected':''}>${v}</option>`).join('')}</select></div>
-    <div><label>Počet hostů</label><input name="attendees" type="number" min="0" value="${Number(o.attendees)||1}"></div>
-    <div><label>Počet prodejů</label><input name="sale_count" type="number" min="0" value="${Number(o.sale_count)||0}"></div>
-    <div class="full"><label>Menu</label><input name="menu" value="${esc(o.menu)}"></div>
-    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;
-  return `
-    <div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div>
-    <div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div>
-    <div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div>
-    <div><label>Role</label><input name="role" value="${esc(o.role||'Poradce')}"></div>
-    <div><label>Měsíční cíl</label><input name="monthly_goal" type="number" min="0" value="${Number(o.monthly_goal)||0}"></div>
-    <div><label>Prodeje tento měsíc</label><input name="monthly_sales" type="number" min="0" value="${Number(o.monthly_sales)||0}"></div>
-    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;
-}
-window.closeModal=()=>$('#modal').classList.remove('open');
-
-$('#modalForm').onsubmit=async e=>{
-  e.preventDefault();
-  const fd=new FormData(e.target);
-  const table=mode==='contact'?'contacts':mode==='task'?'tasks':mode==='demo'?'demos':'team_members';
-  const obj=Object.fromEntries(fd.entries());
-  if(mode==='task'){
-    obj.completed=fd.has('completed');
-    obj.due_at=obj.due_at?new Date(obj.due_at).toISOString():null;
-  }
-  if(mode==='demo'){
-    obj.demo_date=new Date(obj.demo_date).toISOString();
-    obj.attendees=Number(obj.attendees||0);
-    obj.sale_count=Number(obj.sale_count||0);
-  }
-  if(mode==='member'){
-    obj.monthly_goal=Number(obj.monthly_goal||0);
-    obj.monthly_sales=Number(obj.monthly_sales||0);
-  }
-  const q=editId?sb.from(table).update(obj).eq('id',editId):sb.from(table).insert(obj);
-  const {error}=await q;
-  if(error)return alert(error.message);
-  closeModal();await loadAll();
-};
-window.removeRow=async(table,id)=>{
-  if(!confirm('Opravdu smazat?'))return;
-  const {error}=await sb.from(table).delete().eq('id',id);
-  if(error)alert(error.message);else await loadAll();
-};
-window.toggleTask=async(id,value)=>{
-  const {error}=await sb.from('tasks').update({completed:value}).eq('id',id);
-  if(error)alert(error.message);else await loadAll();
-};
-
-await showSession();
-</script>
-</body>
-</html>
+import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+const sb=createClient('https://brniiebtdfjrbggyyiei.supabase.co','sb_publishable_MK5VMec_VFo3gvQMvxyeQw_DpazDGyr');
+const NAV=[['dashboard','🏠 Přehled'],['contacts','👥 Zákazníci'],['tasks','✅ Úkoly'],['demos','📅 Kalendář'],['team','🌿 Tým']];let contacts=[],tasks=[],demos=[],team=[],mode='',editId=null,monthlyGoal=Math.max(1,Number(localStorage.getItem('leaderhub_monthly_goal'))||10);const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])),fmt=d=>d?new Date(d).toLocaleDateString('cs-CZ'):'',monthKey=()=>new Date().toISOString().slice(0,7);
+$('#today').textContent=new Date().toLocaleDateString('cs-CZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});$('#goalInput').value=monthlyGoal;$('#desktopNav').innerHTML=NAV.map((x,i)=>`<button data-page="${x[0]}" class="${i?'':'active'}">${x[1]}</button>`).join('');$('#mobileNav').innerHTML=$('#desktopNav').innerHTML;document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===b.dataset.page));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));scrollTo(0,0)});
+const authMessage=t=>$('#authMsg').textContent=t;async function showSession(){const{data:{session}}=await sb.auth.getSession();$('#authView').classList.toggle('hidden',!!session);$('#appView').classList.toggle('hidden',!session);if(session)await loadAll()}$('#loginBtn').onclick=async()=>{authMessage('Přihlašuji…');const{error}=await sb.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});authMessage(error?error.message:'');await showSession()};$('#signupBtn').onclick=async()=>{const{error}=await sb.auth.signUp({email:$('#email').value.trim(),password:$('#password').value,options:{emailRedirectTo:location.origin+location.pathname}});authMessage(error?error.message:'Účet byl vytvořen. Zkontroluj potvrzovací e-mail.');await showSession()};$('#resetBtn').onclick=async()=>{const email=$('#email').value.trim();if(!email)return authMessage('Nejdřív zadej e-mail.');const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});authMessage(error?error.message:'Odkaz pro změnu hesla byl odeslán.')};$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();await showSession()};sb.auth.onAuthStateChange(()=>setTimeout(showSession,0));$('#saveGoalBtn').onclick=()=>{monthlyGoal=Math.max(1,Number($('#goalInput').value)||1);localStorage.setItem('leaderhub_monthly_goal',monthlyGoal);renderDashboard()};
+async function loadAll(){const[c,t,d,m]=await Promise.all([sb.from('contacts').select('*').order('created_at',{ascending:false}),sb.from('tasks').select('*').order('due_at',{ascending:true,nullsFirst:false}),sb.from('demos').select('*').order('demo_date',{ascending:true}),sb.from('team_members').select('*').order('full_name',{ascending:true})]);const errors=[c.error,t.error,d.error,m.error].filter(Boolean);$('#dbWarning').classList.toggle('hidden',!errors.length);$('#dbWarning').textContent=errors.length?'Některá část databáze není dostupná: '+errors[0].message:'';contacts=c.data||[];tasks=t.data||[];demos=d.data||[];team=m.data||[];renderAll()}
+function renderGoal(sales){const p=Math.round(sales/monthlyGoal*100),card=$('#goalCard');let c='goal-red',msg=`Do cíle zbývá ${Math.max(monthlyGoal-sales,0)} Thermomixů. 💪`;if(p>=100){c='goal-gold';msg='Cíl splněn! Skvělá práce! 🏆'}else if(p>=76){c='goal-green';msg=`Do cíle zbývá už jen ${monthlyGoal-sales}! 🚀`}else if(p>=51){c='goal-yellow';msg=`Cíl je na dosah. Zbývá ${monthlyGoal-sales}.`}else if(p>=26){c='goal-orange';msg='Jdeš správným směrem. Jen tak dál!'}card.className=`card goal-card ${c}`;$('#goalCount').textContent=`${sales} / ${monthlyGoal} Thermomixů`;$('#goalPercent').textContent=`${p} %`;$('#goalFill').style.width=`${Math.min(p,100)}%`;$('#goalMessage').textContent=msg}
+function renderDashboard(){const active=tasks.filter(x=>!x.completed),md=demos.filter(x=>(x.demo_date||'').slice(0,7)===monthKey()),sales=md.reduce((a,x)=>a+(Number(x.sale_count)||0),0);$('#statContacts').textContent=contacts.length;$('#statTasks').textContent=active.length;$('#statDemos').textContent=md.length;$('#statSales').textContent=sales;renderGoal(sales);$('#dashTasks').innerHTML=active.slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.due_at)}</div></div>`).join('')||'<div class="muted">Žádné aktivní úkoly</div>';$('#dashDemos').innerHTML=demos.filter(x=>new Date(x.demo_date)>=new Date()).slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div></div>`).join('')||'<div class="muted">Žádné plánované události</div>'}
+const sClass=s=>s==='Nový zájemce'?'s-new':s==='Domluvená ukázka'?'s-demo':s==='Čeká na vyjádření'?'s-wait':s==='Klient'?'s-client':'s-no';function renderContacts(){const q=$('#contactSearch').value.toLowerCase(),f=$('#contactFilter').value,a=contacts.filter(x=>((x.full_name||'')+(x.phone||'')+(x.email||'')).toLowerCase().includes(q)&&(!f||x.status===f));$('#contactsList').innerHTML=a.map(x=>`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill"><span class="status-dot ${sClass(x.status)}"></span>${esc(x.status||'Nový zájemce')}</span>${x.follow_up_date?`<div class="muted">Další kontakt: ${fmt(x.follow_up_date)}</div>`:''}${x.next_step?`<div class="muted">Další krok: ${esc(x.next_step)}</div>`:''}</div><div class="actions"><button class="secondary" onclick="openContact('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('contacts','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádní zákazníci</div>'}
+function renderTasks(){$('#tasksList').innerHTML=tasks.map(x=>`<div class="item row"><div><label><input style="width:auto" type="checkbox" ${x.completed?'checked':''} onchange="toggleTask('${x.id}',this.checked)"> <b style="${x.completed?'text-decoration:line-through;opacity:.55':''}">${esc(x.title)}</b></label><div class="muted">${fmt(x.due_at)} · ${esc(x.priority||'Normální')}</div></div><div class="actions"><button class="secondary" onclick="openTask('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('tasks','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné úkoly</div>'}
+function renderDemos(){$('#demosList').innerHTML=demos.map(x=>`<div class="item row"><div><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div><span class="pill">${esc(x.result||'Plánovaná')}</span><span class="pill">Prodeje: ${Number(x.sale_count)||0}</span></div><div class="actions"><button class="secondary" onclick="openDemo('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('demos','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné události</div>'}
+function renderTeam(){$('#teamList').innerHTML=team.map(x=>{const g=Number(x.monthly_goal)||0,s=Number(x.monthly_sales)||0,p=g?Math.round(s/g*100):0,c=p>=100?'goal-gold':p>=76?'goal-green':p>=51?'goal-yellow':p>=26?'goal-orange':'goal-red';return`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill">Cíl: ${g}</span><span class="pill">Prodeje: ${s}</span><span class="pill ${c}">${p} %</span></div><div class="actions"><button class="secondary" onclick="openMember('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('team_members','${x.id}')">Smazat</button></div></div>`}).join('')||'<div class="muted">Zatím žádní členové týmu</div>'}function renderAll(){renderDashboard();renderContacts();renderTasks();renderDemos();renderTeam()}$('#contactSearch').oninput=renderContacts;$('#contactFilter').onchange=renderContacts;
+window.openContact=id=>openForm('contact',id);window.openTask=id=>openForm('task',id);window.openDemo=id=>openForm('demo',id);window.openMember=id=>openForm('member',id);function openForm(type,id){mode=type;editId=id||null;const arr=type==='contact'?contacts:type==='task'?tasks:type==='demo'?demos:team,o=arr.find(x=>x.id===id)||{};$('#modalTitle').textContent=(id?'Upravit ':'Přidat ')+(type==='contact'?'zákazníka':type==='task'?'úkol':type==='demo'?'událost':'člena týmu');$('#modalFields').innerHTML=fields(type,o);$('#modal').classList.add('open')}
+function fields(t,o){if(t==='contact')return`<div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Stav</label><select name="status">${['Nový zájemce','Domluvená ukázka','Čeká na vyjádření','Klient','Nezájem'].map(v=>`<option ${o.status===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Typ kontaktu</label><select name="contact_type">${['Zájemce','Klient','Hostitelka','Doporučení','Jiné'].map(v=>`<option ${o.contact_type===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Město</label><input name="city" value="${esc(o.city)}"></div><div><label>Další kontakt</label><input name="follow_up_date" type="date" value="${esc(o.follow_up_date)}"></div><div><label>Další krok</label><input name="next_step" value="${esc(o.next_step)}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;if(t==='task')return`<div class="full"><label>Název úkolu</label><input name="title" required value="${esc(o.title)}"></div><div><label>Termín</label><input name="due_at" type="datetime-local" value="${o.due_at?o.due_at.slice(0,16):''}"></div><div><label>Priorita</label><select name="priority">${['Nízká','Normální','Vysoká'].map(v=>`<option ${o.priority===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label><input style="width:auto" name="completed" type="checkbox" ${o.completed?'checked':''}> Hotovo</label></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;if(t==='demo')return`<div class="full"><label>Název události</label><input name="title" required value="${esc(o.title||'Ukázka Thermomixu')}"></div><div><label>Datum a čas</label><input name="demo_date" type="datetime-local" required value="${o.demo_date?o.demo_date.slice(0,16):''}"></div><div><label>Místo</label><input name="place" value="${esc(o.place)}"></div><div><label>Výsledek</label><select name="result">${['Plánovaná','Proběhla','Zrušená','Přesunutá'].map(v=>`<option ${o.result===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Počet hostů</label><input name="attendees" type="number" min="0" value="${Number(o.attendees)||1}"></div><div><label>Počet prodejů</label><input name="sale_count" type="number" min="0" value="${Number(o.sale_count)||0}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;return`<div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Role</label><input name="role" value="${esc(o.role||'Poradce')}"></div><div><label>Měsíční cíl</label><input name="monthly_goal" type="number" min="0" value="${Number(o.monthly_goal)||0}"></div><div><label>Prodeje tento měsíc</label><input name="monthly_sales" type="number" min="0" value="${Number(o.monthly_sales)||0}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}
+window.closeModal=()=>$('#modal').classList.remove('open');$('#modalForm').onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.target),table=mode==='contact'?'contacts':mode==='task'?'tasks':mode==='demo'?'demos':'team_members',obj=Object.fromEntries(fd.entries());if(mode==='task'){obj.completed=fd.has('completed');obj.due_at=obj.due_at?new Date(obj.due_at).toISOString():null}if(mode==='demo'){obj.demo_date=new Date(obj.demo_date).toISOString();obj.attendees=Number(obj.attendees||0);obj.sale_count=Number(obj.sale_count||0)}if(mode==='member'){obj.monthly_goal=Number(obj.monthly_goal||0);obj.monthly_sales=Number(obj.monthly_sales||0)}const q=editId?sb.from(table).update(obj).eq('id',editId):sb.from(table).insert(obj),{error}=await q;if(error)return alert(error.message);closeModal();await loadAll()};window.removeRow=async(table,id)=>{if(!confirm('Opravdu smazat?'))return;const{error}=await sb.from(table).delete().eq('id',id);if(error)alert(error.message);else await loadAll()};window.toggleTask=async(id,value)=>{const{error}=await sb.from('tasks').update({completed:value}).eq('id',id);if(error)alert(error.message);else await loadAll()};await showSession();
+</script></body></html>
