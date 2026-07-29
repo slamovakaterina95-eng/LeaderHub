@@ -1,15 +1,470 @@
-import{createClient}from'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
-const sb=createClient('https://brniiebtdfjrbggyyiei.supabase.co','sb_publishable_MK5VMec_VFo3gvQMvxyeQw_DpazDGyr');
-const NAV=[['dashboard','🏠 Přehled'],['contacts','👥 Zákazníci'],['tasks','✅ Úkoly'],['demos','📅 Kalendář'],['team','🌿 Tým']];let contacts=[],tasks=[],demos=[],team=[],mode='',editId=null,monthlyGoal=Math.max(1,Number(localStorage.getItem('leaderhub_monthly_goal'))||10);const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m])),fmt=d=>d?new Date(d).toLocaleDateString('cs-CZ'):'',monthKey=()=>new Date().toISOString().slice(0,7);
-$('#today').textContent=new Date().toLocaleDateString('cs-CZ',{weekday:'long',day:'numeric',month:'long',year:'numeric'});$('#goalInput').value=monthlyGoal;$('#desktopNav').innerHTML=NAV.map((x,i)=>`<button data-page="${x[0]}" class="${i?'':'active'}">${x[1]}</button>`).join('');$('#mobileNav').innerHTML=$('#desktopNav').innerHTML;document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-page]').forEach(x=>x.classList.toggle('active',x.dataset.page===b.dataset.page));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('active',x.id===b.dataset.page));scrollTo(0,0)});
-const authMessage=t=>$('#authMsg').textContent=t;async function showSession(){const{data:{session}}=await sb.auth.getSession();$('#authView').classList.toggle('hidden',!!session);$('#appView').classList.toggle('hidden',!session);if(session)await loadAll()}$('#loginBtn').onclick=async()=>{authMessage('Přihlašuji…');const{error}=await sb.auth.signInWithPassword({email:$('#email').value.trim(),password:$('#password').value});authMessage(error?error.message:'');await showSession()};$('#signupBtn').onclick=async()=>{const{error}=await sb.auth.signUp({email:$('#email').value.trim(),password:$('#password').value,options:{emailRedirectTo:location.origin+location.pathname}});authMessage(error?error.message:'Účet byl vytvořen. Zkontroluj potvrzovací e-mail.');await showSession()};$('#resetBtn').onclick=async()=>{const email=$('#email').value.trim();if(!email)return authMessage('Nejdřív zadej e-mail.');const{error}=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+location.pathname});authMessage(error?error.message:'Odkaz pro změnu hesla byl odeslán.')};$('#logoutBtn').onclick=async()=>{await sb.auth.signOut();await showSession()};sb.auth.onAuthStateChange(()=>setTimeout(showSession,0));$('#saveGoalBtn').onclick=()=>{monthlyGoal=Math.max(1,Number($('#goalInput').value)||1);localStorage.setItem('leaderhub_monthly_goal',monthlyGoal);renderDashboard()};
-async function loadAll(){const[c,t,d,m]=await Promise.all([sb.from('contacts').select('*').order('created_at',{ascending:false}),sb.from('tasks').select('*').order('due_at',{ascending:true,nullsFirst:false}),sb.from('demos').select('*').order('demo_date',{ascending:true}),sb.from('team_members').select('*').order('full_name',{ascending:true})]);const errors=[c.error,t.error,d.error,m.error].filter(Boolean);$('#dbWarning').classList.toggle('hidden',!errors.length);$('#dbWarning').textContent=errors.length?'Některá část databáze není dostupná: '+errors[0].message:'';contacts=c.data||[];tasks=t.data||[];demos=d.data||[];team=m.data||[];renderAll()}
-function renderGoal(sales){const p=Math.round(sales/monthlyGoal*100),card=$('#goalCard');let c='goal-red',msg=`Do cíle zbývá ${Math.max(monthlyGoal-sales,0)} Thermomixů. 💪`;if(p>=100){c='goal-gold';msg='Cíl splněn! Skvělá práce! 🏆'}else if(p>=76){c='goal-green';msg=`Do cíle zbývá už jen ${monthlyGoal-sales}! 🚀`}else if(p>=51){c='goal-yellow';msg=`Cíl je na dosah. Zbývá ${monthlyGoal-sales}.`}else if(p>=26){c='goal-orange';msg='Jdeš správným směrem. Jen tak dál!'}card.className=`card goal-card ${c}`;$('#goalCount').textContent=`${sales} / ${monthlyGoal} Thermomixů`;$('#goalPercent').textContent=`${p} %`;$('#goalFill').style.width=`${Math.min(p,100)}%`;$('#goalMessage').textContent=msg}
-function renderDashboard(){const active=tasks.filter(x=>!x.completed),md=demos.filter(x=>(x.demo_date||'').slice(0,7)===monthKey()),sales=md.reduce((a,x)=>a+(Number(x.sale_count)||0),0);$('#statContacts').textContent=contacts.length;$('#statTasks').textContent=active.length;$('#statDemos').textContent=md.length;$('#statSales').textContent=sales;renderGoal(sales);$('#dashTasks').innerHTML=active.slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.due_at)}</div></div>`).join('')||'<div class="muted">Žádné aktivní úkoly</div>';$('#dashDemos').innerHTML=demos.filter(x=>new Date(x.demo_date)>=new Date()).slice(0,5).map(x=>`<div class="item"><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div></div>`).join('')||'<div class="muted">Žádné plánované události</div>'}
-const sClass=s=>s==='Nový zájemce'?'s-new':s==='Domluvená ukázka'?'s-demo':s==='Čeká na vyjádření'?'s-wait':s==='Klient'?'s-client':'s-no';function renderContacts(){const q=$('#contactSearch').value.toLowerCase(),f=$('#contactFilter').value,a=contacts.filter(x=>((x.full_name||'')+(x.phone||'')+(x.email||'')).toLowerCase().includes(q)&&(!f||x.status===f));$('#contactsList').innerHTML=a.map(x=>`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill"><span class="status-dot ${sClass(x.status)}"></span>${esc(x.status||'Nový zájemce')}</span>${x.follow_up_date?`<div class="muted">Další kontakt: ${fmt(x.follow_up_date)}</div>`:''}${x.next_step?`<div class="muted">Další krok: ${esc(x.next_step)}</div>`:''}</div><div class="actions"><button class="secondary" onclick="openContact('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('contacts','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádní zákazníci</div>'}
-function renderTasks(){$('#tasksList').innerHTML=tasks.map(x=>`<div class="item row"><div><label><input style="width:auto" type="checkbox" ${x.completed?'checked':''} onchange="toggleTask('${x.id}',this.checked)"> <b style="${x.completed?'text-decoration:line-through;opacity:.55':''}">${esc(x.title)}</b></label><div class="muted">${fmt(x.due_at)} · ${esc(x.priority||'Normální')}</div></div><div class="actions"><button class="secondary" onclick="openTask('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('tasks','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné úkoly</div>'}
-function renderDemos(){$('#demosList').innerHTML=demos.map(x=>`<div class="item row"><div><b>${esc(x.title)}</b><div class="muted">${fmt(x.demo_date)} · ${esc(x.place)}</div><span class="pill">${esc(x.result||'Plánovaná')}</span><span class="pill">Prodeje: ${Number(x.sale_count)||0}</span></div><div class="actions"><button class="secondary" onclick="openDemo('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('demos','${x.id}')">Smazat</button></div></div>`).join('')||'<div class="muted">Zatím žádné události</div>'}
-function renderTeam(){$('#teamList').innerHTML=team.map(x=>{const g=Number(x.monthly_goal)||0,s=Number(x.monthly_sales)||0,p=g?Math.round(s/g*100):0,c=p>=100?'goal-gold':p>=76?'goal-green':p>=51?'goal-yellow':p>=26?'goal-orange':'goal-red';return`<div class="item row"><div><b>${esc(x.full_name)}</b><div class="muted">${esc(x.phone)} ${x.email?'· '+esc(x.email):''}</div><span class="pill">Cíl: ${g}</span><span class="pill">Prodeje: ${s}</span><span class="pill ${c}">${p} %</span></div><div class="actions"><button class="secondary" onclick="openMember('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('team_members','${x.id}')">Smazat</button></div></div>`}).join('')||'<div class="muted">Zatím žádní členové týmu</div>'}function renderAll(){renderDashboard();renderContacts();renderTasks();renderDemos();renderTeam()}$('#contactSearch').oninput=renderContacts;$('#contactFilter').onchange=renderContacts;
-window.openContact=id=>openForm('contact',id);window.openTask=id=>openForm('task',id);window.openDemo=id=>openForm('demo',id);window.openMember=id=>openForm('member',id);function openForm(type,id){mode=type;editId=id||null;const arr=type==='contact'?contacts:type==='task'?tasks:type==='demo'?demos:team,o=arr.find(x=>x.id===id)||{};$('#modalTitle').textContent=(id?'Upravit ':'Přidat ')+(type==='contact'?'zákazníka':type==='task'?'úkol':type==='demo'?'událost':'člena týmu');$('#modalFields').innerHTML=fields(type,o);$('#modal').classList.add('open')}
-function fields(t,o){if(t==='contact')return`<div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Stav</label><select name="status">${['Nový zájemce','Domluvená ukázka','Čeká na vyjádření','Klient','Nezájem'].map(v=>`<option ${o.status===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Typ kontaktu</label><select name="contact_type">${['Zájemce','Klient','Hostitelka','Doporučení','Jiné'].map(v=>`<option ${o.contact_type===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Město</label><input name="city" value="${esc(o.city)}"></div><div><label>Další kontakt</label><input name="follow_up_date" type="date" value="${esc(o.follow_up_date)}"></div><div><label>Další krok</label><input name="next_step" value="${esc(o.next_step)}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;if(t==='task')return`<div class="full"><label>Název úkolu</label><input name="title" required value="${esc(o.title)}"></div><div><label>Termín</label><input name="due_at" type="datetime-local" value="${o.due_at?o.due_at.slice(0,16):''}"></div><div><label>Priorita</label><select name="priority">${['Nízká','Normální','Vysoká'].map(v=>`<option ${o.priority===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label><input style="width:auto" name="completed" type="checkbox" ${o.completed?'checked':''}> Hotovo</label></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;if(t==='demo')return`<div class="full"><label>Název události</label><input name="title" required value="${esc(o.title||'Ukázka Thermomixu')}"></div><div><label>Datum a čas</label><input name="demo_date" type="datetime-local" required value="${o.demo_date?o.demo_date.slice(0,16):''}"></div><div><label>Místo</label><input name="place" value="${esc(o.place)}"></div><div><label>Výsledek</label><select name="result">${['Plánovaná','Proběhla','Zrušená','Přesunutá'].map(v=>`<option ${o.result===v?'selected':''}>${v}</option>`).join('')}</select></div><div><label>Počet hostů</label><input name="attendees" type="number" min="0" value="${Number(o.attendees)||1}"></div><div><label>Počet prodejů</label><input name="sale_count" type="number" min="0" value="${Number(o.sale_count)||0}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`;return`<div><label>Jméno</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Role</label><input name="role" value="${esc(o.role||'Poradce')}"></div><div><label>Měsíční cíl</label><input name="monthly_goal" type="number" min="0" value="${Number(o.monthly_goal)||0}"></div><div><label>Prodeje tento měsíc</label><input name="monthly_sales" type="number" min="0" value="${Number(o.monthly_sales)||0}"></div><div class="full"><label>Poznámka</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}
-window.closeModal=()=>$('#modal').classList.remove('open');$('#modalForm').onsubmit=async e=>{e.preventDefault();const fd=new FormData(e.target),table=mode==='contact'?'contacts':mode==='task'?'tasks':mode==='demo'?'demos':'team_members',obj=Object.fromEntries(fd.entries());if(mode==='task'){obj.completed=fd.has('completed');obj.due_at=obj.due_at?new Date(obj.due_at).toISOString():null}if(mode==='demo'){obj.demo_date=new Date(obj.demo_date).toISOString();obj.attendees=Number(obj.attendees||0);obj.sale_count=Number(obj.sale_count||0)}if(mode==='member'){obj.monthly_goal=Number(obj.monthly_goal||0);obj.monthly_sales=Number(obj.monthly_sales||0)}const q=editId?sb.from(table).update(obj).eq('id',editId):sb.from(table).insert(obj),{error}=await q;if(error)return alert(error.message);closeModal();await loadAll()};window.removeRow=async(table,id)=>{if(!confirm('Opravdu smazat?'))return;const{error}=await sb.from(table).delete().eq('id',id);if(error)alert(error.message);else await loadAll()};window.toggleTask=async(id,value)=>{const{error}=await sb.from('tasks').update({completed:value}).eq('id',id);if(error)alert(error.message);else await loadAll()};await showSession();
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
+
+const sb = createClient(
+  'https://brniiebtdfjrbggyyiei.supabase.co',
+  'sb_publishable_MK5VMec_VFo3gvQMvxyeQw_DpazDGyr'
+);
+
+const NAV = [
+  ['dashboard','🏠 Přehled'],
+  ['contacts','👥 Zákazníci'],
+  ['tasks','✅ Úkoly'],
+  ['demos','📅 Kalendář'],
+  ['team','🌿 Tým']
+];
+
+const STATUS = ['Nový zájemce','Domluvená ukázka','Čeká na vyjádření','Klient','Nezájem'];
+let contacts = [], tasks = [], demos = [], team = [];
+let mode = '', editId = null;
+let monthlyGoal = Math.max(1, Number(localStorage.getItem('leaderhub_monthly_goal')) || 10);
+
+const $ = selector => document.querySelector(selector);
+const esc = value => String(value ?? '').replace(/[&<>"']/g, char => ({
+  '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'
+}[char]));
+const fmt = value => value ? new Date(value).toLocaleDateString('cs-CZ') : '';
+const monthKey = () => new Date().toISOString().slice(0,7);
+const dayStart = date => new Date(date.getFullYear(), date.getMonth(), date.getDate());
+const daysBetween = (a,b) => Math.round((dayStart(a)-dayStart(b))/86400000);
+
+function showPage(id) {
+  document.querySelectorAll('[data-page]').forEach(el => el.classList.toggle('active', el.dataset.page === id));
+  document.querySelectorAll('.section').forEach(el => el.classList.toggle('active', el.id === id));
+  window.scrollTo(0,0);
+}
+
+function initNavigation() {
+  $('#desktopNav').innerHTML = NAV.map((item,index) =>
+    `<button data-page="${item[0]}" class="${index ? '' : 'active'}">${item[1]}</button>`
+  ).join('');
+  $('#mobileNav').innerHTML = $('#desktopNav').innerHTML;
+  document.querySelectorAll('[data-page]').forEach(button => {
+    button.addEventListener('click', () => showPage(button.dataset.page));
+  });
+  document.querySelectorAll('[data-jump]').forEach(button => {
+    button.addEventListener('click', () => {
+      showPage(button.dataset.jump);
+      if (button.dataset.filter !== undefined) {
+        $('#contactFilter').value = button.dataset.filter;
+        renderContacts();
+      }
+    });
+  });
+}
+
+function authMessage(text) { $('#authMsg').textContent = text; }
+
+async function showSession() {
+  const { data: { session } } = await sb.auth.getSession();
+  $('#authView').classList.toggle('hidden', Boolean(session));
+  $('#appView').classList.toggle('hidden', !session);
+  if (session) await loadAll();
+}
+
+$('#loginBtn').onclick = async () => {
+  authMessage('Přihlašuji…');
+  const { error } = await sb.auth.signInWithPassword({
+    email: $('#email').value.trim(),
+    password: $('#password').value
+  });
+  authMessage(error ? error.message : '');
+  await showSession();
+};
+
+$('#signupBtn').onclick = async () => {
+  authMessage('Vytvářím účet…');
+  const { error } = await sb.auth.signUp({
+    email: $('#email').value.trim(),
+    password: $('#password').value,
+    options: { emailRedirectTo: location.origin + location.pathname }
+  });
+  authMessage(error ? error.message : 'Účet byl vytvořen. Zkontroluj potvrzovací e-mail.');
+  await showSession();
+};
+
+$('#resetBtn').onclick = async () => {
+  const email = $('#email').value.trim();
+  if (!email) return authMessage('Nejdřív zadej e-mail.');
+  const { error } = await sb.auth.resetPasswordForEmail(email, {
+    redirectTo: location.origin + location.pathname
+  });
+  authMessage(error ? error.message : 'Odkaz pro změnu hesla byl odeslán.');
+};
+
+$('#logoutBtn').onclick = async () => {
+  await sb.auth.signOut();
+  await showSession();
+};
+
+sb.auth.onAuthStateChange(() => setTimeout(showSession, 0));
+
+async function loadAll() {
+  const [c,t,d,m] = await Promise.all([
+    sb.from('contacts').select('*').order('created_at',{ascending:false}),
+    sb.from('tasks').select('*').order('due_at',{ascending:true,nullsFirst:false}),
+    sb.from('demos').select('*').order('demo_date',{ascending:true}),
+    sb.from('team_members').select('*').order('full_name',{ascending:true})
+  ]);
+
+  const errors = [c.error,t.error,d.error,m.error].filter(Boolean);
+  $('#dbWarning').classList.toggle('hidden', !errors.length);
+  $('#dbWarning').textContent = errors.length
+    ? 'Některá část databáze není dostupná: ' + errors[0].message
+    : '';
+
+  contacts = c.data || [];
+  tasks = t.data || [];
+  demos = d.data || [];
+  team = m.data || [];
+  renderAll();
+}
+
+function renderGoal(sales) {
+  const percent = Math.round((sales / monthlyGoal) * 100);
+  const card = $('#goalCard');
+  let className = 'goal-red';
+  let message = `Do cíle zbývá ${Math.max(monthlyGoal-sales,0)} Thermomixů. 💪`;
+
+  if (percent >= 100) {
+    className = 'goal-gold';
+    message = 'Cíl splněn! Skvělá práce! 🏆';
+  } else if (percent >= 76) {
+    className = 'goal-green';
+    message = `Do cíle zbývá už jen ${monthlyGoal-sales}. 🚀`;
+  } else if (percent >= 51) {
+    className = 'goal-yellow';
+    message = `Cíl je na dosah. Zbývá ${monthlyGoal-sales}.`;
+  } else if (percent >= 26) {
+    className = 'goal-orange';
+    message = 'Jdeš správným směrem. Jen tak dál!';
+  }
+
+  card.className = `card goal-card ${className}`;
+  $('#goalCount').textContent = `${sales} / ${monthlyGoal} Thermomixů`;
+  $('#goalPercent').textContent = `${percent} %`;
+  $('#goalFill').style.width = `${Math.min(percent,100)}%`;
+  $('#goalMessage').textContent = message;
+}
+
+function followupState(contact) {
+  if (!contact.follow_up_date) return '';
+  const diff = daysBetween(new Date(contact.follow_up_date), new Date());
+  if (diff < 0) return `<span class="followup-due">Po termínu ${Math.abs(diff)} d.</span>`;
+  if (diff === 0) return `<span class="followup-today">Dnes</span>`;
+  return `za ${diff} d.`;
+}
+
+function renderRecommendations() {
+  const overdue = contacts.filter(c => c.follow_up_date && daysBetween(new Date(c.follow_up_date),new Date()) < 0);
+  const waiting = contacts.filter(c => c.status === 'Čeká na vyjádření');
+  const activeTasks = tasks.filter(t => !t.completed);
+  const upcoming = demos.filter(d => new Date(d.demo_date) >= new Date());
+
+  const items = [];
+  if (overdue.length) items.push(['📞',`Ozvi se ${overdue.length} kontaktům`,`Mají follow-up po termínu.`]);
+  if (waiting.length) items.push(['⏳',`Projdi ${waiting.length} čekajících zájemců`,`Čekají na vyjádření.`]);
+  if (activeTasks.length) items.push(['✅',`Dokonči dnešní priority`,`Aktivních úkolů: ${activeTasks.length}.`]);
+  if (!upcoming.length) items.push(['🏡','Naplánuj další ukázku','V kalendáři zatím není žádná budoucí událost.']);
+  if (!items.length) items.push(['✨','Všechno důležité je pod kontrolou','Skvělá práce.']);
+
+  $('#recommendations').innerHTML = items.slice(0,3).map(i =>
+    `<div class="recommendation"><span>${i[0]}</span><div><b>${esc(i[1])}</b><small>${esc(i[2])}</small></div></div>`
+  ).join('');
+}
+
+function renderDashboard() {
+  const activeTasks = tasks.filter(item => !item.completed);
+  const monthDemos = demos.filter(item => (item.demo_date || '').slice(0,7) === monthKey());
+  const sales = monthDemos.reduce((sum,item) => sum + (Number(item.sale_count) || 0), 0);
+  const newLeads = contacts.filter(item => item.status === 'Nový zájemce');
+  const waiting = contacts.filter(item => item.status === 'Čeká na vyjádření');
+
+  $('#statNew').textContent = newLeads.length;
+  $('#statWaiting').textContent = waiting.length;
+  $('#statTasks').textContent = activeTasks.length;
+  $('#statDemos').textContent = monthDemos.length;
+  renderGoal(sales);
+  renderRecommendations();
+
+  const followups = contacts
+    .filter(item => item.follow_up_date)
+    .sort((a,b) => new Date(a.follow_up_date) - new Date(b.follow_up_date))
+    .slice(0,5);
+
+  $('#dashFollowups').innerHTML = followups.map(item =>
+    `<div class="item row">
+      <div>
+        <b>${esc(item.full_name)}</b>
+        <div class="muted">${esc(item.next_step || 'Ozvat se zákazníkovi')}</div>
+      </div>
+      <div>${followupState(item)}</div>
+    </div>`
+  ).join('') || '<div class="empty">Zatím žádný naplánovaný follow-up</div>';
+
+  const upcoming = demos
+    .filter(item => new Date(item.demo_date) >= new Date())
+    .slice(0,5);
+
+  $('#dashDemos').innerHTML = upcoming.map(item =>
+    `<div class="item row">
+      <div><b>${esc(item.title)}</b><div class="muted">${esc(item.place || 'Místo neuvedeno')}</div></div>
+      <div><b>${fmt(item.demo_date)}</b></div>
+    </div>`
+  ).join('') || '<div class="empty">Žádné plánované události</div>';
+}
+
+const statusClass = status =>
+  status === 'Nový zájemce' ? 's-new' :
+  status === 'Domluvená ukázka' ? 's-demo' :
+  status === 'Čeká na vyjádření' ? 's-wait' :
+  status === 'Klient' ? 's-client' : 's-no';
+
+function renderStatusOverview() {
+  const filter = $('#contactFilter').value;
+  $('#contactStatusCards').innerHTML = STATUS.map(status => {
+    const count = contacts.filter(item => item.status === status).length;
+    return `<button class="status-chip ${filter === status ? 'active' : ''}" data-status-filter="${esc(status)}">
+      <span><span class="status-dot ${statusClass(status)}"></span>${esc(status)}</span>
+      <strong>${count}</strong>
+    </button>`;
+  }).join('');
+
+  document.querySelectorAll('[data-status-filter]').forEach(button => {
+    button.onclick = () => {
+      $('#contactFilter').value = $('#contactFilter').value === button.dataset.statusFilter ? '' : button.dataset.statusFilter;
+      renderContacts();
+    };
+  });
+}
+
+function renderContacts() {
+  renderStatusOverview();
+  const search = $('#contactSearch').value.toLowerCase();
+  const filter = $('#contactFilter').value;
+  const filtered = contacts.filter(item =>
+    ((item.full_name || '') + (item.phone || '') + (item.email || '')).toLowerCase().includes(search)
+    && (!filter || item.status === filter)
+  );
+
+  $('#contactsList').innerHTML = filtered.map(item =>
+    `<div class="item row">
+      <div>
+        <b class="contact-name">${esc(item.full_name)}</b>
+        <div class="contact-meta">
+          ${item.phone ? `<span>📞 ${esc(item.phone)}</span>` : ''}
+          ${item.email ? `<span>✉️ ${esc(item.email)}</span>` : ''}
+          ${item.city ? `<span>📍 ${esc(item.city)}</span>` : ''}
+        </div>
+        <span class="pill"><span class="status-dot ${statusClass(item.status)}"></span>${esc(item.status || 'Nový zájemce')}</span>
+        ${item.next_step ? `<span class="pill">Další krok: ${esc(item.next_step)}</span>` : ''}
+        ${item.follow_up_date ? `<div class="muted" style="margin-top:8px">Follow-up: ${fmt(item.follow_up_date)} · ${followupState(item)}</div>` : ''}
+      </div>
+      <div class="actions">
+        ${item.phone ? `<a class="secondary call-link" href="tel:${esc(item.phone)}">Zavolat</a>` : ''}
+        <button class="secondary" onclick="openContact('${item.id}')">Upravit</button>
+        <button class="danger" onclick="removeRow('contacts','${item.id}')">Smazat</button>
+      </div>
+    </div>`
+  ).join('') || '<div class="empty">V tomto filtru zatím nejsou žádní zákazníci</div>';
+}
+
+function taskTiming(task) {
+  if (!task.due_at) return '';
+  const diff = daysBetween(new Date(task.due_at), new Date());
+  if (diff < 0) return `<span class="followup-due">Po termínu</span>`;
+  if (diff === 0) return `<span class="followup-today">Dnes</span>`;
+  return fmt(task.due_at);
+}
+
+function renderTasks() {
+  $('#tasksList').innerHTML = tasks.map(item =>
+    `<div class="item row">
+      <div>
+        <label>
+          <input style="width:auto" type="checkbox" ${item.completed ? 'checked' : ''} onchange="toggleTask('${item.id}',this.checked)">
+          <b style="${item.completed ? 'text-decoration:line-through;opacity:.55' : ''}">${esc(item.title)}</b>
+        </label>
+        <div class="muted">${taskTiming(item)} ${item.priority ? '· ' + esc(item.priority) : ''}</div>
+      </div>
+      <div class="actions">
+        <button class="secondary" onclick="openTask('${item.id}')">Upravit</button>
+        <button class="danger" onclick="removeRow('tasks','${item.id}')">Smazat</button>
+      </div>
+    </div>`
+  ).join('') || '<div class="empty">Zatím žádné úkoly</div>';
+}
+
+function renderDemos() {
+  $('#demosList').innerHTML = demos.map(item =>
+    `<div class="item row">
+      <div>
+        <b>${esc(item.title)}</b>
+        <div class="muted">${fmt(item.demo_date)} · ${esc(item.place || 'Místo neuvedeno')}</div>
+        <span class="pill">${esc(item.result || 'Plánovaná')}</span>
+        <span class="pill">Prodeje: ${Number(item.sale_count) || 0}</span>
+      </div>
+      <div class="actions">
+        <button class="secondary" onclick="openDemo('${item.id}')">Upravit</button>
+        <button class="danger" onclick="removeRow('demos','${item.id}')">Smazat</button>
+      </div>
+    </div>`
+  ).join('') || '<div class="empty">Zatím žádné události</div>';
+}
+
+function renderTeam() {
+  $('#teamList').innerHTML = team.map(item => {
+    const goal = Number(item.monthly_goal) || 0;
+    const sales = Number(item.monthly_sales) || 0;
+    const percent = goal ? Math.round(sales / goal * 100) : 0;
+    const color = percent >= 100 ? 'goal-gold' : percent >= 76 ? 'goal-green' : percent >= 51 ? 'goal-yellow' : percent >= 26 ? 'goal-orange' : 'goal-red';
+    return `<div class="item row">
+      <div>
+        <b>${esc(item.full_name)}</b>
+        <div class="muted">${esc(item.phone || '')} ${item.email ? '· ' + esc(item.email) : ''}</div>
+        <span class="pill">Cíl: ${goal}</span>
+        <span class="pill">Prodeje: ${sales}</span>
+        <span class="pill ${color}">${percent} %</span>
+      </div>
+      <div class="actions">
+        <button class="secondary" onclick="openMember('${item.id}')">Upravit</button>
+        <button class="danger" onclick="removeRow('team_members','${item.id}')">Smazat</button>
+      </div>
+    </div>`;
+  }).join('') || '<div class="empty">Zatím žádní členové týmu</div>';
+}
+
+function renderAll() {
+  renderDashboard();
+  renderContacts();
+  renderTasks();
+  renderDemos();
+  renderTeam();
+}
+
+$('#goalInput').value = monthlyGoal;
+$('#saveGoalBtn').onclick = () => {
+  monthlyGoal = Math.max(1, Number($('#goalInput').value) || 1);
+  localStorage.setItem('leaderhub_monthly_goal', String(monthlyGoal));
+  renderDashboard();
+};
+
+$('#contactSearch').oninput = renderContacts;
+$('#contactFilter').onchange = renderContacts;
+
+$('#quickAddBtn').onclick = event => {
+  event.stopPropagation();
+  $('#quickMenu').classList.toggle('open');
+};
+window.closeQuickMenu = () => $('#quickMenu').classList.remove('open');
+document.addEventListener('click', event => {
+  if (!$('#quickMenu').contains(event.target) && event.target !== $('#quickAddBtn')) closeQuickMenu();
+});
+
+window.openContact = id => openForm('contact',id);
+window.openTask = id => openForm('task',id);
+window.openDemo = id => openForm('demo',id);
+window.openMember = id => openForm('member',id);
+
+function openForm(type,id) {
+  mode = type;
+  editId = id || null;
+  const source = type === 'contact' ? contacts : type === 'task' ? tasks : type === 'demo' ? demos : team;
+  const record = source.find(item => item.id === id) || {};
+  $('#modalTitle').textContent = (id ? 'Upravit ' : 'Přidat ') + (
+    type === 'contact' ? 'zákazníka' :
+    type === 'task' ? 'úkol' :
+    type === 'demo' ? 'událost' : 'člena týmu'
+  );
+  $('#modalFields').innerHTML = fields(type,record);
+  $('#modal').classList.add('open');
+}
+
+function fields(type,record) {
+  if (type === 'contact') return `
+    <div><label>Jméno</label><input name="full_name" required value="${esc(record.full_name)}"></div>
+    <div><label>Telefon</label><input name="phone" value="${esc(record.phone)}"></div>
+    <div><label>E-mail</label><input name="email" type="email" value="${esc(record.email)}"></div>
+    <div><label>Stav</label><select name="status">${STATUS.map(value => `<option ${record.status === value ? 'selected' : ''}>${value}</option>`).join('')}</select></div>
+    <div><label>Typ kontaktu</label><select name="contact_type">${['Zájemce','Klient','Hostitelka','Doporučení','Jiné'].map(value => `<option ${record.contact_type === value ? 'selected' : ''}>${value}</option>`).join('')}</select></div>
+    <div><label>Město</label><input name="city" value="${esc(record.city)}"></div>
+    <div><label>Další kontakt</label><input name="follow_up_date" type="date" value="${esc(record.follow_up_date)}"></div>
+    <div><label>Další krok</label><input name="next_step" placeholder="Např. zavolat nebo poslat nabídku" value="${esc(record.next_step)}"></div>
+    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(record.notes)}</textarea></div>`;
+
+  if (type === 'task') return `
+    <div class="full"><label>Název úkolu</label><input name="title" required value="${esc(record.title)}"></div>
+    <div><label>Termín</label><input name="due_at" type="datetime-local" value="${record.due_at ? record.due_at.slice(0,16) : ''}"></div>
+    <div><label>Priorita</label><select name="priority">${['Nízká','Normální','Vysoká'].map(value => `<option ${record.priority === value ? 'selected' : ''}>${value}</option>`).join('')}</select></div>
+    <div><label><input style="width:auto" name="completed" type="checkbox" ${record.completed ? 'checked' : ''}> Hotovo</label></div>
+    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(record.notes)}</textarea></div>`;
+
+  if (type === 'demo') return `
+    <div class="full"><label>Název události</label><input name="title" required value="${esc(record.title || 'Ukázka Thermomixu')}"></div>
+    <div><label>Datum a čas</label><input name="demo_date" type="datetime-local" required value="${record.demo_date ? record.demo_date.slice(0,16) : ''}"></div>
+    <div><label>Místo</label><input name="place" value="${esc(record.place)}"></div>
+    <div><label>Výsledek</label><select name="result">${['Plánovaná','Proběhla','Zrušená','Přesunutá'].map(value => `<option ${record.result === value ? 'selected' : ''}>${value}</option>`).join('')}</select></div>
+    <div><label>Počet hostů</label><input name="attendees" type="number" min="0" value="${Number(record.attendees) || 1}"></div>
+    <div><label>Počet prodejů</label><input name="sale_count" type="number" min="0" value="${Number(record.sale_count) || 0}"></div>
+    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(record.notes)}</textarea></div>`;
+
+  return `
+    <div><label>Jméno</label><input name="full_name" required value="${esc(record.full_name)}"></div>
+    <div><label>Telefon</label><input name="phone" value="${esc(record.phone)}"></div>
+    <div><label>E-mail</label><input name="email" type="email" value="${esc(record.email)}"></div>
+    <div><label>Role</label><input name="role" value="${esc(record.role || 'Poradce')}"></div>
+    <div><label>Měsíční cíl</label><input name="monthly_goal" type="number" min="0" value="${Number(record.monthly_goal) || 0}"></div>
+    <div><label>Prodeje tento měsíc</label><input name="monthly_sales" type="number" min="0" value="${Number(record.monthly_sales) || 0}"></div>
+    <div class="full"><label>Poznámka</label><textarea name="notes">${esc(record.notes)}</textarea></div>`;
+}
+
+window.closeModal = () => $('#modal').classList.remove('open');
+
+$('#modalForm').onsubmit = async event => {
+  event.preventDefault();
+  const formData = new FormData(event.target);
+  const table = mode === 'contact' ? 'contacts' : mode === 'task' ? 'tasks' : mode === 'demo' ? 'demos' : 'team_members';
+  const object = Object.fromEntries(formData.entries());
+
+  if (mode === 'task') {
+    object.completed = formData.has('completed');
+    object.due_at = object.due_at ? new Date(object.due_at).toISOString() : null;
+  }
+  if (mode === 'demo') {
+    object.demo_date = new Date(object.demo_date).toISOString();
+    object.attendees = Number(object.attendees || 0);
+    object.sale_count = Number(object.sale_count || 0);
+  }
+  if (mode === 'member') {
+    object.monthly_goal = Number(object.monthly_goal || 0);
+    object.monthly_sales = Number(object.monthly_sales || 0);
+  }
+
+  const query = editId
+    ? sb.from(table).update(object).eq('id',editId)
+    : sb.from(table).insert(object);
+
+  const { error } = await query;
+  if (error) return alert(error.message);
+  closeModal();
+  await loadAll();
+};
+
+window.removeRow = async (table,id) => {
+  if (!confirm('Opravdu smazat?')) return;
+  const { error } = await sb.from(table).delete().eq('id',id);
+  if (error) alert(error.message);
+  else await loadAll();
+};
+
+window.toggleTask = async (id,value) => {
+  const { error } = await sb.from('tasks').update({completed:value}).eq('id',id);
+  if (error) alert(error.message);
+  else await loadAll();
+};
+
+$('#today').textContent = new Date().toLocaleDateString('cs-CZ',{
+  weekday:'long',day:'numeric',month:'long',year:'numeric'
+});
+
+initNavigation();
+await showSession();

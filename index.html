@@ -1,19 +1,200 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#173f35">
-<title>LeaderHub by Kačka</title>
-<link rel="stylesheet" href="css/style.css"></head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#173f35">
+  <title>LeaderHub by Kačka</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<div id="authView" class="auth"><div class="auth-card"><h1>LeaderHub</h1><p class="muted">by Kačka · bezpečné přihlášení a synchronizace</p><div class="stack"><input id="email" type="email" placeholder="E-mail"><input id="password" type="password" placeholder="Heslo (minimálně 6 znaků)"><button id="loginBtn" class="primary">Přihlásit se</button><button id="signupBtn" class="secondary">Vytvořit účet</button><button id="resetBtn" class="secondary">Zapomenuté heslo</button><div id="authMsg" class="muted"></div></div></div></div>
-<div id="appView" class="app hidden"><aside><div class="logo">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader</div><nav id="desktopNav"></nav></aside><main>
-<section id="dashboard" class="section active"><div class="top"><div><h1>Hezký den, Kačko 👋</h1><div id="today" class="muted"></div></div><button id="logoutBtn" class="secondary">Odhlásit</button></div><div id="dbWarning" class="message hidden" style="margin-bottom:16px"></div>
-<div id="goalCard" class="card goal-card goal-red" style="margin-bottom:18px"><div class="goal-head"><div><h3 style="margin-bottom:6px">🎯 Měsíční cíl</h3><div id="goalCount" class="goal-count">0 / 10 Thermomixů</div></div><div id="goalPercent" class="goal-percent">0 %</div></div><div class="goal-track"><div id="goalFill" class="goal-fill"></div></div><div id="goalMessage" class="goal-message">Začínáme nový měsíc. 💪</div><div class="goal-edit"><span>Nastavit cíl:</span><input id="goalInput" type="number" min="1" value="10"><button id="saveGoalBtn" class="secondary">Uložit cíl</button></div></div>
-<div class="grid stats"><div class="card stat"><span class="muted">Zákazníci</span><strong id="statContacts">0</strong></div><div class="card stat"><span class="muted">Aktivní úkoly</span><strong id="statTasks">0</strong></div><div class="card stat"><span class="muted">Ukázky tento měsíc</span><strong id="statDemos">0</strong></div><div class="card stat"><span class="muted">Prodeje tento měsíc</span><strong id="statSales">0</strong></div></div><div class="grid two" style="margin-top:18px"><div class="card"><h3>Nejbližší úkoly</h3><div id="dashTasks"></div></div><div class="card"><h3>Nejbližší ukázky</h3><div id="dashDemos"></div></div></div></section>
-<section id="contacts" class="section"><div class="top"><div><h1>Zákazníci</h1><div class="muted">Zájemci, klienti a doporučení</div></div><button class="primary" onclick="openContact()">+ Nový zákazník</button></div><div class="card"><div class="toolbar"><input id="contactSearch" placeholder="Hledat podle jména, telefonu nebo e-mailu..."><select id="contactFilter"><option value="">Všechny stavy</option><option>Nový zájemce</option><option>Domluvená ukázka</option><option>Čeká na vyjádření</option><option>Klient</option><option>Nezájem</option></select></div><div id="contactsList"></div></div></section>
-<section id="tasks" class="section"><div class="top"><div><h1>Úkoly</h1><div class="muted">Follow-up a připomínky</div></div><button class="primary" onclick="openTask()">+ Nový úkol</button></div><div class="card"><div id="tasksList"></div></div></section>
-<section id="demos" class="section"><div class="top"><div><h1>Kalendář</h1><div class="muted">Ukázky, schůzky a školení</div></div><button class="primary" onclick="openDemo()">+ Nová událost</button></div><div class="card"><div id="demosList"></div></div></section>
-<section id="team" class="section"><div class="top"><div><h1>Tým</h1><div class="muted">Členové týmu a měsíční výsledky</div></div><button class="primary" onclick="openMember()">+ Přidat člena</button></div><div class="card"><div id="teamList"></div></div></section>
-</main><nav id="mobileNav" class="mobile"></nav></div>
-<div id="modal" class="modal"><div class="modalbox"><div class="row"><h2 id="modalTitle"></h2><button class="secondary" onclick="closeModal()">×</button></div><form id="modalForm"><div id="modalFields" class="formgrid"></div><div class="actions" style="justify-content:flex-end;margin-top:18px"><button type="button" class="secondary" onclick="closeModal()">Zrušit</button><button class="primary">Uložit</button></div></form></div></div>
-<script type="module" src="js/app.js"></script></body></html>
+  <div id="authView" class="auth">
+    <div class="auth-card">
+      <div class="brand-mark">LH</div>
+      <h1>LeaderHub</h1>
+      <p class="muted">by Kačka · bezpečné přihlášení a synchronizace</p>
+      <div class="stack">
+        <input id="email" type="email" autocomplete="email" placeholder="E-mail">
+        <input id="password" type="password" autocomplete="current-password" placeholder="Heslo (minimálně 6 znaků)">
+        <button id="loginBtn" class="primary">Přihlásit se</button>
+        <button id="signupBtn" class="secondary">Vytvořit účet</button>
+        <button id="resetBtn" class="link-btn">Zapomenuté heslo</button>
+        <div id="authMsg" class="muted"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="appView" class="app hidden">
+    <aside>
+      <div class="logo">LeaderHub</div>
+      <div class="tag">by Kačka · Thermomix Team Leader</div>
+      <nav id="desktopNav"></nav>
+      <div class="aside-foot">
+        <button id="logoutBtn" class="aside-logout">Odhlásit se</button>
+      </div>
+    </aside>
+
+    <main>
+      <section id="dashboard" class="section active">
+        <div class="top">
+          <div>
+            <div class="eyebrow">PŘEHLED DNE</div>
+            <h1>Hezký den, Kačko 👋</h1>
+            <div id="today" class="muted"></div>
+          </div>
+          <button id="quickAddBtn" class="primary">＋ Rychle přidat</button>
+        </div>
+
+        <div id="dbWarning" class="message hidden"></div>
+
+        <div class="dashboard-layout">
+          <div id="goalCard" class="card goal-card goal-red">
+            <div class="goal-head">
+              <div>
+                <div class="card-kicker">MĚSÍČNÍ VÝSLEDEK</div>
+                <h2>🎯 Měsíční cíl</h2>
+                <div id="goalCount" class="goal-count">0 / 10 Thermomixů</div>
+              </div>
+              <div id="goalPercent" class="goal-percent">0 %</div>
+            </div>
+            <div class="goal-track"><div id="goalFill" class="goal-fill"></div></div>
+            <div id="goalMessage" class="goal-message">Začínáme nový měsíc. 💪</div>
+            <details class="goal-settings">
+              <summary>Upravit měsíční cíl</summary>
+              <div class="goal-edit">
+                <input id="goalInput" type="number" min="1" value="10" aria-label="Měsíční cíl">
+                <button id="saveGoalBtn" class="secondary">Uložit</button>
+              </div>
+            </details>
+          </div>
+
+          <div class="card recommendation-card">
+            <div class="card-kicker">DNEŠNÍ DOPORUČENÍ</div>
+            <h2>💡 Co je teď nejdůležitější?</h2>
+            <div id="recommendations" class="recommendations"></div>
+          </div>
+        </div>
+
+        <div class="grid stats">
+          <button class="card stat stat-button" data-jump="contacts" data-filter="Nový zájemce">
+            <span class="stat-icon">👤</span>
+            <span class="muted">Noví zájemci</span>
+            <strong id="statNew">0</strong>
+            <small>Otevřít seznam</small>
+          </button>
+          <button class="card stat stat-button" data-jump="contacts" data-filter="Čeká na vyjádření">
+            <span class="stat-icon">⏳</span>
+            <span class="muted">Čekají na vyjádření</span>
+            <strong id="statWaiting">0</strong>
+            <small>Otevřít seznam</small>
+          </button>
+          <button class="card stat stat-button" data-jump="tasks">
+            <span class="stat-icon">✅</span>
+            <span class="muted">Aktivní úkoly</span>
+            <strong id="statTasks">0</strong>
+            <small>Zobrazit úkoly</small>
+          </button>
+          <button class="card stat stat-button" data-jump="demos">
+            <span class="stat-icon">🏡</span>
+            <span class="muted">Ukázky tento měsíc</span>
+            <strong id="statDemos">0</strong>
+            <small>Otevřít kalendář</small>
+          </button>
+        </div>
+
+        <div class="grid two dashboard-lists">
+          <div class="card">
+            <div class="card-title-row">
+              <div><div class="card-kicker">FOLLOW-UP</div><h2>Kontakty k oslovení</h2></div>
+              <button class="text-action" data-jump="contacts">Všechny</button>
+            </div>
+            <div id="dashFollowups"></div>
+          </div>
+          <div class="card">
+            <div class="card-title-row">
+              <div><div class="card-kicker">KALENDÁŘ</div><h2>Nejbližší události</h2></div>
+              <button class="text-action" data-jump="demos">Všechny</button>
+            </div>
+            <div id="dashDemos"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts" class="section">
+        <div class="top">
+          <div><div class="eyebrow">DATABÁZE</div><h1>Zákazníci</h1><div class="muted">Zájemci, klienti a doporučení na jednom místě</div></div>
+          <button class="primary" onclick="openContact()">＋ Nový zákazník</button>
+        </div>
+
+        <div id="contactStatusCards" class="status-overview"></div>
+
+        <div class="card">
+          <div class="toolbar">
+            <div class="search-wrap"><span>⌕</span><input id="contactSearch" placeholder="Hledat jméno, telefon nebo e-mail..."></div>
+            <select id="contactFilter">
+              <option value="">Všechny stavy</option>
+              <option>Nový zájemce</option>
+              <option>Domluvená ukázka</option>
+              <option>Čeká na vyjádření</option>
+              <option>Klient</option>
+              <option>Nezájem</option>
+            </select>
+          </div>
+          <div id="contactsList"></div>
+        </div>
+      </section>
+
+      <section id="tasks" class="section">
+        <div class="top">
+          <div><div class="eyebrow">ORGANIZACE</div><h1>Úkoly</h1><div class="muted">Follow-up, připomínky a dnešní priority</div></div>
+          <button class="primary" onclick="openTask()">＋ Nový úkol</button>
+        </div>
+        <div class="card"><div id="tasksList"></div></div>
+      </section>
+
+      <section id="demos" class="section">
+        <div class="top">
+          <div><div class="eyebrow">PLÁNOVÁNÍ</div><h1>Kalendář</h1><div class="muted">Ukázky, schůzky a školení</div></div>
+          <button class="primary" onclick="openDemo()">＋ Nová událost</button>
+        </div>
+        <div class="card"><div id="demosList"></div></div>
+      </section>
+
+      <section id="team" class="section">
+        <div class="top">
+          <div><div class="eyebrow">VEDENÍ TÝMU</div><h1>Tým</h1><div class="muted">Členové týmu a měsíční výsledky</div></div>
+          <button class="primary" onclick="openMember()">＋ Přidat člena</button>
+        </div>
+        <div class="card"><div id="teamList"></div></div>
+      </section>
+    </main>
+
+    <nav id="mobileNav" class="mobile"></nav>
+  </div>
+
+  <div id="quickMenu" class="quick-menu">
+    <button onclick="closeQuickMenu();openContact()">👤 Nový zákazník</button>
+    <button onclick="closeQuickMenu();openTask()">✅ Nový úkol</button>
+    <button onclick="closeQuickMenu();openDemo()">📅 Nová událost</button>
+    <button onclick="closeQuickMenu();openMember()">🌿 Nový člen týmu</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <div class="modalbox">
+      <div class="modal-head">
+        <div><div class="card-kicker">LEADERHUB</div><h2 id="modalTitle"></h2></div>
+        <button class="icon-btn" onclick="closeModal()" aria-label="Zavřít">×</button>
+      </div>
+      <form id="modalForm">
+        <div id="modalFields" class="formgrid"></div>
+        <div class="modal-actions">
+          <button type="button" class="secondary" onclick="closeModal()">Zrušit</button>
+          <button class="primary">Uložit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
