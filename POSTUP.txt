@@ -1,0 +1,9 @@
+LEADERHUB 3.1 – OPRAVA NAČÍTÁNÍ
+
+1. Zkopíruj nový index.html do složky projektu LeaderHub a potvrď nahrazení.
+2. V GitHub Desktop napiš Summary: LeaderHub 3.1 – oprava načítání
+3. Klikni Commit to main.
+4. Klikni Push origin.
+5. Po 1–2 minutách otevři LeaderHub a stiskni Ctrl + F5.
+
+Tato verze už neskrývá skutečnou chybu za obecnou hlášku. Pokud některá tabulka stále chybí nebo má jiný sloupec, zobrazí přesný název problému a ostatní části aplikace se přesto načtou.
