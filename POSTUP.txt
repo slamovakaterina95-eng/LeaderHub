@@ -1,16 +1,17 @@
-LEADERHUB 3.2 – TÝMOVÝ PŘEHLED
+LEADERHUB 3.3 – SOUTĚŽE A ODMĚNY
 
-Novinky:
-- pořadí poradců podle prodejů
-- součty poradců, prodejů a nováčků
-- rychlá tlačítka + Prodej a + Nováček
-- export kontaktů a týmu do CSV
+1. Spusť LeaderHub_v3_3_migration.sql v Supabase SQL Editoru.
+2. Nahraď index.html ve složce LeaderHub.
+3. GitHub Desktop: Commit a Push origin.
+4. Otevři LeaderHub a stiskni Ctrl + F5.
 
-INSTALACE:
-1. Nahraďte soubor index.html ve složce LeaderHub.
-2. V GitHub Desktop napište Summary: LeaderHub 3.2 – týmový přehled
-3. Commit to main.
-4. Push origin.
-5. Počkejte 1–2 minuty a v LeaderHubu stiskněte Ctrl + F5.
+Nově:
+- tabulka nároků na odměny pro každou soutěž
+- roční, měsíční, týdenní a denní soutěže
+- vlastní milníky
+- podmínka nováčka
+- průběžné výsledky jednotlivých poradců
+- automatické označení nároku ✓
 
-Pro tuto verzi není potřeba spouštět žádný SQL kód.
+Milník zapisuj: počet prodejů|odměna|počet nováčků
+Např. 19|iPad mini|1
