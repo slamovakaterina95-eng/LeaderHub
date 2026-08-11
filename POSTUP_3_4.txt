@@ -1,0 +1,18 @@
+LEADERHUB 3.4 – STABILNÍ OPRAVA
+
+Co je opraveno:
+- přihlášení znovu reaguje
+- opravená JavaScript SyntaxError v exportu CSV
+- kontrola načtení Supabase částí bez pádu celé aplikace
+- soutěže a tabulky odměn zůstávají zachované
+- vylepšené hlášení chyb
+
+INSTALACE
+1. Nahraď současný index.html ve své složce LeaderHub souborem z tohoto balíčku.
+2. Pokud jsi ještě nespustila migraci 3.3, spusť LeaderHub_v3_3_migration.sql v Supabase SQL Editoru. Pokud už jsi ji spustila, znovu ji spouštět nemusíš.
+3. GitHub Desktop: Commit to main.
+4. Push origin.
+5. Počkej cca 1–2 minuty a na stránce LeaderHub stiskni Ctrl+F5.
+
+Adresa:
+https://slamovakaterina95-eng.github.io/LeaderHub/
