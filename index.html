@@ -1,4 +1,4 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174d42"><title>LeaderHub 5.4.4</title>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174d42"><title>LeaderHub 5.4.2</title>
 <style>
 :root{--bg:#f4f7f6;--card:#fff;--text:#173b33;--muted:#70817b;--brand:#1f715f;--soft:#e6f2ee;--line:#dce7e3;--danger:#b74848}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}.hidden{display:none!important}button{border:0;border-radius:14px;padding:12px 15px;font-weight:750}.primary{background:var(--brand);color:#fff}.primary:disabled,.secondary:disabled{opacity:.55;cursor:wait}.secondary{background:var(--soft);color:var(--text)}.danger{background:#fdeaea;color:var(--danger)}input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.auth{min-height:100vh;display:grid;place-items:center;padding:24px}.auth-card{width:min(460px,100%);background:#fff;padding:28px;border-radius:24px;box-shadow:0 16px 50px #164b3d18}.stack{display:grid;gap:13px}.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{background:#153f36;color:#fff;padding:26px 18px}.brand{font-size:28px;font-weight:850}.tag{font-size:12px;color:#c6ddd5;margin:5px 0 24px}.nav{display:grid;gap:7px}.nav button{text-align:left;background:transparent;color:#e3efeb}.nav button.active{background:#ffffff20}.mobile{display:none}main{padding:28px;max-width:1450px;width:100%}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.top h1{margin:0;font-size:34px}.muted{color:var(--muted)}.section{display:none}.section.active{display:block}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:1.2fr 1fr}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 30px #164b3d0d}.stat strong{display:block;font-size:34px;margin-top:6px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.toolbar input{max-width:330px}.toolbar select{max-width:230px}.item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;padding:5px 9px;background:var(--soft);border-radius:999px;font-size:13px;margin:5px 5px 0 0}.modal{position:fixed;inset:0;background:#081d18a8;display:none;place-items:center;padding:18px;z-index:20}.modal.open{display:grid}.modalbox{background:#fff;width:min(900px,100%);max-height:92vh;overflow:auto;border-radius:24px;padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.full{grid-column:1/-1}label{font-size:14px;font-weight:800;display:block;margin-bottom:6px}.section-title{grid-column:1/-1;border-top:1px solid var(--line);padding-top:14px;margin-top:8px;font-size:18px}.accessory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.accessory{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:10px;border-radius:12px}.accessory input{width:auto}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tabs button.active{background:var(--brand);color:#fff}.progress{height:12px;background:#edf1ef;border-radius:999px;overflow:hidden}.progress div{height:100%;background:var(--brand)}.rank{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--soft);font-weight:850;margin-right:10px}.mini-btn{padding:7px 10px;border-radius:10px}.team-summary{grid-template-columns:repeat(3,1fr);margin-bottom:16px}.team-name{display:flex;align-items:center}.empty-note{padding:18px 0;color:var(--muted)}
 @media(max-width:980px){.team-summary{grid-template-columns:repeat(3,1fr)}.app{grid-template-columns:1fr}.side{display:none}.mobile{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;background:#fffffff2;padding:8px 5px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:10}.mobile button{font-size:11px;padding:10px 3px;background:transparent;color:var(--muted)}.mobile button.active{background:var(--soft);color:var(--text)}main{padding:20px 16px 95px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.stats,.two,.formgrid,.accessory-grid,.team-summary{grid-template-columns:1fr}.top,.row{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions button{flex:1}.toolbar input,.toolbar select{max-width:none}}
@@ -121,7 +121,7 @@ body{background:radial-gradient(circle at 12% 8%,#dff7ff 0,transparent 24%),radi
 @media(max-width:760px){.calendar-weekdays,.calendar-month{gap:4px}.calendar-cell{min-height:92px;padding:5px;border-radius:10px}.calendar-event{font-size:8px;padding:4px}.calendar-weekdays{font-size:10px}.calendar-num{font-size:12px}}
 </style></head><body>
 <div id="authView" class="auth"><div class="auth-card"><h1>LeaderHub</h1><p class="muted">by Kačka · přihlášení a synchronizace</p><div class="stack"><input id="email" type="email" placeholder="E-mail"><input id="password" type="password" placeholder="Heslo"><button id="loginBtn" class="primary">Přihlásit se</button><button id="signupBtn" class="secondary">Vytvořit účet</button><div id="authMsg" class="muted"></div></div></div></div>
-<div id="appView" class="app hidden"><aside class="side"><div class="brand">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader · v5.4.4</div><div class="nav"><button class="active" data-page="dashboard">🏠 Přehled</button><button data-page="contacts">👥 Kontakty</button><button data-page="forms">📩 Dotazníky</button><button data-page="tasks">✅ Úkoly</button><button data-page="calendar">📅 Kalendář</button><button data-page="team">👩‍💼 Tým</button><button data-page="sales">🧾 Prodeje</button><button data-page="goals">🎯 Měsíční cíle</button><button data-page="competitions">🏆 Soutěže</button><button data-page="statistics">📊 Statistiky</button><button data-page="smartnotes">📝 Zápisník</button><button data-page="settings">⚙️ Nastavení</button></div><div id="motivationSide" class="motivation-side"></div></aside><main>
+<div id="appView" class="app hidden"><aside class="side"><div class="brand">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader · v5.4.2</div><div class="nav"><button class="active" data-page="dashboard">🏠 Přehled</button><button data-page="contacts">👥 Kontakty</button><button data-page="forms">📩 Dotazníky</button><button data-page="tasks">✅ Úkoly</button><button data-page="calendar">📅 Kalendář</button><button data-page="team">👩‍💼 Tým</button><button data-page="sales">🧾 Prodeje</button><button data-page="goals">🎯 Měsíční cíle</button><button data-page="competitions">🏆 Soutěže</button><button data-page="statistics">📊 Statistiky</button><button data-page="smartnotes">📝 Zápisník</button><button data-page="settings">⚙️ Nastavení</button></div><div id="motivationSide" class="motivation-side"></div></aside><main>
 <section id="dashboard" class="section active"><div id="systemWarning" class="card hidden" style="margin-bottom:16px;background:#fff8e7;color:#7a5800"></div><div class="top"><div><h1>Hezký den, Kačko 👋</h1><div id="dateNow" class="muted"></div><div id="motivationTop" class="motivation-top"></div></div><div class="quick-add"><button class="secondary" onclick="openTask()">+ Úkol</button><button class="secondary" onclick="openContact()">+ Kontakt</button><button class="primary" onclick="openSale()">+ Prodej</button><button id="logoutBtn" class="secondary">Odhlásit</button></div></div><div class="hero-goal"><div class="card"><div class="section-subtitle" id="dashPeriodTitle">Aktuální Vorwerk měsíc</div><div class="hero-number"><span id="dashTeamActual">0</span> / <span id="dashTeamTarget">0</span> TM</div><div id="dashTeamRemaining" class="hero-sub">Nastav týmový cíl v Měsíčních cílech.</div><div class="progress" style="margin-top:14px;height:16px"><div id="dashTeamProgress" style="width:0%"></div></div><div id="dashMemberBreakdown" class="muted" style="margin-top:12px"></div></div><div class="card"><div class="section-subtitle">Co potřebuje moji pozornost</div><div id="dashAttention" class="attention-list"></div></div></div><div class="grid stats"><button class="card stat dash-stat-card" onclick="showSection('sales')"><span class="muted">Moje prodeje</span><strong id="statMySales">0</strong><div class="muted" id="statMyGoalText"></div></button><button class="card stat dash-stat-card" onclick="showSection('team')"><span class="muted">Aktivní poradci</span><strong id="statActiveMembers">0</strong></button><button class="card stat dash-stat-card" onclick="showTeamNewcomers()"><span class="muted">Nováčci tento měsíc</span><strong id="statRecruits">0</strong></button><button class="card stat dash-stat-card" onclick="showSection('tasks')"><span class="muted">Úkoly dnes / probíhá</span><strong id="statTasks">0</strong></button></div><div class="team-modern"><div class="card"><div class="row"><div class="section-subtitle">🎯 Plnění cíle – tým</div><button class="secondary mini-btn" onclick="showSection('goals')">Detail →</button></div><div id="dashTeamTable" class="team-progress-list"></div></div><div class="card quick-overview"><div class="section-subtitle">📊 Rychlý přehled</div><div id="dashQuickOverview"></div></div></div><div class="card week-card" style="margin-top:16px"><div class="row"><div><div class="section-subtitle">📅 Můj týden</div><div class="muted">Úkoly, schůzky a důležité Vorwerk termíny na jednom místě.</div></div><button class="secondary mini-btn" onclick="showSection('calendar')">Celý kalendář →</button></div><div id="dashWeek" class="week-strip"></div></div><div class="grid two" style="margin-top:16px"><div class="card"><h3>Dnes a probíhá</h3><div id="dashTasks"></div></div><div class="card"><h3>Kontrola dat</h3><div id="dashDataCheck"></div></div></div></section>
 <section id="contacts" class="section"><div class="top"><div><h1>Moje kontakty</h1><div class="muted">Standardně vidíš jen kontakty, které sis nechala ve svém seznamu.</div></div><div class="actions"><button class="secondary" onclick="openContactPool()">+ Přidat od poradce</button><button class="primary" onclick="openContact()">+ Nový kontakt</button></div></div><div class="card"><div class="toolbar"><input id="searchContacts" placeholder="Hledat jméno, telefon nebo město..."><select id="filterType"><option value="">Všechny typy</option><option>Zájemce</option><option>Klient</option></select><select id="filterStatus"><option value="">Všechny stavy</option><option>Nový zájemce</option><option>Domluvená ukázka</option><option>Čeká na vyjádření</option><option>Klient</option><option>Nezájem</option></select><button class="secondary" onclick="exportContacts()">Export CSV</button></div><div id="contactsList"></div></div></section>
 <section id="forms" class="section"><div class="top"><div><h1>Dotazníky</h1><div class="muted">Odpovědi z veřejných formulářů. Do Kontaktů se nic nepřidá bez tvého rozhodnutí.</div></div></div><div class="grid stats" style="margin-bottom:16px"><div class="card stat"><span class="muted">Nové odpovědi</span><strong id="formNewCount">0</strong></div><div class="card stat"><span class="muted">Celkem odpovědí</span><strong id="formTotalCount">0</strong></div></div><div class="card"><div class="toolbar"><input id="searchForms" placeholder="Hledat jméno, telefon nebo e-mail…" oninput="renderFormSubmissions()"><select id="formStatusFilter" onchange="renderFormSubmissions()"><option value="">Všechny stavy</option><option value="Nový">Nový</option><option value="Domluvena ukázka">Domluvena ukázka</option><option value="Vyřízeno">Vyřízeno</option></select></div><div id="formSubmissionsList"></div></div></section><section id="tasks" class="section"><div class="top"><div><h1>Úkoly</h1><div class="muted">Další kroky a připomínky. Hotové zůstávají v historii, ale nepřekážejí.</div></div><button class="primary" onclick="openTask()">+ Nový úkol</button></div><div class="card"><div class="filter-row"><button class="secondary active" data-task-filter="active" onclick="setTaskFilter('active',this)">Aktivní</button><button class="secondary" data-task-filter="done" onclick="setTaskFilter('done',this)">Hotové</button><button class="secondary" data-task-filter="all" onclick="setTaskFilter('all',this)">Všechny</button><span class="task-filter-note">Hotové úkoly se nemažou.</span></div><div id="tasksList"></div></div></section>
@@ -483,81 +483,6 @@ body{background:linear-gradient(135deg,#eef8f6 0%,#f6f2ff 48%,#fff6ed 100%);back
 .side{background:linear-gradient(180deg,#202a32 0%,#29343f 55%,#342e42 100%)}
 .side button.active{background:linear-gradient(135deg,rgba(67,157,142,.28),rgba(122,98,199,.24));border:1px solid rgba(255,255,255,.08)}
 
-
-<style id="lh-v544-calendar-style">
-.calendar-cell.vw-a{background:linear-gradient(155deg,#f2fbff,#eaf6ff)!important}
-.calendar-cell.vw-b{background:linear-gradient(155deg,#fff4fa,#f5efff)!important}
-.calendar-cell.vw-c{background:linear-gradient(155deg,#f1fff7,#ebfbf4)!important}
-.calendar-cell.vw-first{border-top:4px solid #35cf91!important}
-.calendar-cell.vw-last{border-bottom:4px solid #ff6b78!important}
-.cal-vw-start{background:#dcf9e9!important;color:#147447!important}
-.cal-vw-end{background:#ffe6e9!important;color:#a43743!important}
-.cal-op{background:#e4f7ff!important;color:#126d89!important}
-.cal-tl{background:#ffe7f2!important;color:#a22f67!important}
-.cal-big{background:linear-gradient(135deg,#e9e2ff,#ffe4f2)!important;color:#6541a7!important}
-</style>
-<script id="lh-v544-calendar-script">
-(function(){
-  const baseRender = window.renderCalendar;
-  if(typeof baseRender !== 'function') return;
-
-  function plusDay(s){
-    const d=new Date(s+'T12:00:00'); d.setDate(d.getDate()+1);
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-  function periods(){
-    try { return Array.isArray(vorwerkPeriods) ? vorwerkPeriods : []; }
-    catch(e){ return []; }
-  }
-  function addChip(cell, cls, title){
-    if(!cell || cell.querySelector('[data-v544="'+cls+'"]')) return;
-    const x=document.createElement('div');
-    x.className='calendar-event '+cls;
-    x.dataset.v544=cls;
-    x.textContent=title;
-    const hint=cell.querySelector('.calendar-addhint');
-    cell.insertBefore(x,hint||null);
-  }
-  function enhance(){
-    const grid=document.getElementById('calendarMonth');
-    if(!grid) return;
-    const cells=[...grid.querySelectorAll('.calendar-cell')];
-    if(!cells.length) return;
-
-    const title=(document.getElementById('calendarMonthTitle')?.textContent||'').trim();
-    const cz=['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'];
-    const mm=cz.findIndex(x=>title.toLowerCase().startsWith(x));
-    const yy=parseInt((title.match(/\d{4}/)||[])[0]||new Date().getFullYear(),10);
-    if(mm<0) return;
-
-    const first=new Date(yy,mm,1,12), offset=(first.getDay()+6)%7;
-    const start=new Date(yy,mm,1-offset,12);
-    const ps=[...periods()].filter(p=>p.start_date&&p.end_date).sort((a,b)=>a.start_date.localeCompare(b.start_date));
-
-    cells.forEach((cell,i)=>{
-      const d=new Date(start); d.setDate(start.getDate()+i);
-      const iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-      const p=ps.find(p=>iso>=p.start_date&&iso<=p.end_date);
-      if(p){
-        const pi=Math.max(0,ps.indexOf(p));
-        cell.classList.add(['vw-a','vw-b','vw-c'][pi%3]);
-        if(iso===p.start_date){ cell.classList.add('vw-first'); addChip(cell,'cal-vw-start','🚀 Začátek · '+(p.title||'Vorwerk měsíc')); }
-        if(iso===p.end_date){ cell.classList.add('vw-last'); addChip(cell,'cal-vw-end','🏁 Konec · '+(p.title||'Vorwerk měsíc')); }
-      }
-      const dow=d.getDay();
-      const isBig=dow===1 && ps.some(p=>plusDay(p.end_date)===iso);
-      if(dow===1) addChip(cell,isBig?'cal-big':'cal-op',isBig?'💜 Velká porada':'🩵 Porada OP');
-      if(dow===5) addChip(cell,'cal-tl','🩷 Porada TL');
-    });
-  }
-
-  window.renderCalendar=function(){
-    baseRender.apply(this,arguments);
-    enhance();
-  };
-})();
-</script>
-
 </body></html>`);w.document.close();w.print()};
 window.openContact=id=>open('contact',id);window.openTask=(id,contactId)=>{window._prefillTaskContact=contactId||null;open('task',id)};window.openMember=id=>open('member',id);window.openCompetition=id=>open('competition',id);function opts(a,v){return a.map(x=>`<option ${v===x?'selected':''}>${x}</option>`).join('')}function open(type,id){mode=type;editId=id||null;let arr=type==='contact'?contacts:type==='task'?tasks:type==='member'?members:competitions,o=arr.find(x=>x.id===id)||{};$('#modalTitle').textContent=(id?'Upravit ':'Přidat ')+(type==='contact'?'kontakt':type==='task'?'úkol':type==='member'?'poradce':'soutěž');$('#modalFields').innerHTML=fields(type,o);$('#modal').classList.add('open');if(type==='contact')toggleClientFields();if(type==='task')setTimeout(()=>window._prefillTaskContact=null,0)}
 function fields(type,o){if(type==='contact'){let owned=o.accessories||[],interest=o.accessory_interest||[];return`<div><label>Jméno a příjmení</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Typ</label><select name="contact_type" id="contactType" onchange="toggleClientFields()">${opts(['Zájemce','Klient'],o.contact_type||'Zájemce')}</select></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Stav</label><select name="status">${opts(['Nový zájemce','Domluvená ukázka','Čeká na vyjádření','Klient','Nezájem'],o.status||'Nový zájemce')}</select></div><div><label>Zdroj kontaktu</label><select name="source">${opts(['Smlouva / prodej','Doporučení','Sociální sítě','Firemní kontakt','Web','Telefon','E-mail','Jiný'],o.source||'Doporučení')}</select></div><div><label>Ulice</label><input name="street" value="${esc(o.street)}"></div><div><label>Město</label><input name="city" value="${esc(o.city)}"></div><div><label>PSČ</label><input name="postal_code" value="${esc(o.postal_code)}"></div><div><label><input style="width:auto" type="checkbox" name="favorite" ${o.favorite?'checked':''}> ⭐ Oblíbený</label></div><div><label>Další kontakt / připomenout</label><input name="follow_up_date" type="date" value="${esc(o.follow_up_date)}"></div><div><label>Další krok</label><input name="next_step" value="${esc(o.next_step)}"></div><div><label>Kontakt poradce</label><select name="advisor_member_id"><option value="">— moje / bez přiřazení —</option>${members.map(m=>`<option value="${m.id}" ${String(o.advisor_member_id||'')===String(m.id)?'selected':''}>${esc(m.full_name)}</option>`).join('')}</select></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div><div class="section-title client-only">Nákup</div><div class="client-only"><label>Číslo smlouvy</label><input name="contract_number" value="${esc(o.contract_number)}"></div><div class="client-only"><label>Datum nákupu</label><input name="purchase_date" type="date" value="${esc(o.purchase_date)}"></div><div class="client-only full"><label>Balíček</label><input name="package_name" value="${esc(o.package_name)}"></div><div class="section-title client-only">Zakoupené příslušenství</div><div class="client-only full accessory-grid">${accessories.map((a,i)=>`<label class="accessory"><input type="checkbox" name="acc_${i}" ${owned.includes(a)?'checked':''}>${a}</label>`).join('')}</div><div class="section-title">Zájem o příslušenství</div><div class="full accessory-grid">${accessories.map((a,i)=>`<label class="accessory"><input type="checkbox" name="interest_${i}" ${interest.includes(a)?'checked':''}>${a}</label>`).join('')}</div>`}if(type==='task'){let tm=taskMeta(o.id),cid=o.contact_id||window._prefillTaskContact||'';return`<div class="full"><label>Název úkolu</label><input name="title" required value="${esc(o.title)}"></div><div><label>Kontakt (volitelné)</label><select name="contact_id"><option value="">— bez kontaktu —</option>${contacts.map(c=>`<option value="${c.id}" ${cid===c.id?'selected':''}>${esc(c.full_name)}</option>`).join('')}</select></div><div><label>Od</label><input name="start_date" type="date" value="${esc(o.start_date||o.due_date)}"></div><div><label>Do</label><input name="end_date" type="date" value="${esc(o.end_date||o.due_date)}"></div><div><label>Čas (volitelné)</label><input name="task_time" type="time" value="${esc(o.task_time||tm.time||'')}"></div><div><label>Opakování</label><select name="repeat_rule">${opts(['Neopakovat','Týdně','Měsíčně'],o.repeat_rule||'Neopakovat')}</select></div><div><label><input style="width:auto" name="completed" type="checkbox" ${o.completed?'checked':''}> Hotovo</label></div><div class="full"><label>Poznámka / výsledek hovoru</label><textarea name="task_note" placeholder="Např. volala jsem, ukázku chce, ozve se kvůli termínu…">${esc(o.notes||tm.note||'')}</textarea><div class="form-help">Je-li úkol propojený s kontaktem, při označení Hotovo se poznámka uloží i do historie kontaktu.</div></div>`}if(type==='member'){let recruiterOptions=`<option value="">— nikdo / původní tým —</option>`+members.filter(m=>m.id!==o.id).map(m=>`<option value="${m.id}" ${o.recruited_by_member_id===m.id?'selected':''}>${esc(m.full_name)}</option>`).join('');return`<div><label>Jméno poradce</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Role</label><select name="role">${opts(['Team Leader','Poradce'],o.role||((o.full_name||'').includes('Kateřina Slámová')?'Team Leader':'Poradce'))}</select></div><div><label>Stav poradce</label><select name="member_status">${opts(['Aktivní','Neaktivní','Ukončený'],memberStatusValue(o))}</select></div><div><label>Úroveň aktivity / kapacita</label><select name="activity_level">${opts(['Vysoká aktivita','Standardní','Nižší aktivita','Nováček'],o.activity_level||'Standardní')}</select></div><div><label>Datum nástupu</label><input name="joined_at" type="date" value="${esc(o.joined_at)}"></div><div><label>🎂 Narozeniny</label><input name="lh_birthday" type="date" value="${esc((JSON.parse(localStorage.getItem('lhBirthdays')||'{}'))[o.full_name]||'')}"><div class="form-help">Stačí zadat datum jednou. V kalendáři se připomene každý rok.</div></div>${(()=>{let en=enrollmentFor(o.id);if(en){let pr=programForEnrollment(en);return`<div class="full locked-note"><b>Start nováčka je uzamčený</b><div>${en.onboarding_mode==='own_tm'?'Nastoupil/a s vlastním TM':'Vyzískává TM'} · ${esc(pr?.title||en.rules_snapshot?.program_title||'program při nástupu')} · do ${fmt(en.deadline)}</div><div class="form-help">Pozdější změny programů se tomuto poradci nepropíšou.</div><input type="hidden" name="existing_enrollment" value="${en.id}"></div><div><label>Výsledek programu</label><select name="enrollment_outcome">${opts(['','TM vyzískán','TM doplacen','TM vrácen'],en.outcome||'')}</select></div><div><label>Další spolupráce</label><select name="next_collaboration">${opts(['','Pokračuje na IČO','Končí spolupráci'],en.next_collaboration||'')}</select></div>`}let joined=o.joined_at||todayISO(),cp=currentNewcomerProgram(joined);return`<div><label>Start poradce</label><select name="onboarding_mode"><option value="">Bez programu / starší poradce</option><option value="earn_tm">Vyzískává Thermomix</option><option value="own_tm">Nastupuje s vlastním TM</option></select></div><div><label>Program při nástupu</label><select name="newcomer_program_id"><option value="">— vyber podle data nástupu —</option>${newcomerPrograms.map(p=>`<option value="${p.id}" ${cp?.id===p.id?'selected':''}>${esc(p.title)} (${fmt(p.valid_from)}–${fmt(p.valid_to)})</option>`).join('')}</select></div>`})()}<div><label>Přivedl/a poradce</label><select name="recruited_by_member_id">${recruiterOptions}</select></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Původní počet prodejů</label><input name="sales_count" type="number" value="${o.sales_count||0}" readonly></div><div><label>Původní počet nováčků</label><input name="recruits_count" type="number" value="${o.recruits_count||0}" readonly></div><div class="full"><label>Zaměření / na co se soustředit</label><textarea name="focus_notes">${esc(o.focus_notes)}</textarea></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}let metric=o.kind==='Roční'?'both':(o.metric_type||'sales');let defaults=(o.kind||currentKind)==='Roční'?[{sales:7,reward:'Thermokoš'},{sales:8,reward:'Taška na kolečkách'},{sales:10,reward:'Sensor'},{sales:12,reward:'Kráječ 2v1'},{sales:14,reward:'2. nádoba'},{sales:19,reward:'iPad mini'},{sales:19,recruits:1,reward:'TM7 / VK7'}]:[];let src=(o.milestones&&o.milestones.length)?o.milestones:defaults;let milestones=src.map(m=>metric==='recruits'?`${m.recruits||m.sales||0}|${m.reward}`:`${m.sales||0}|${m.reward}|${m.recruits||''}`).join('\n');return`<div><label>Typ</label><select name="kind">${opts(['Roční','Měsíční','Týdenní','Denní'],o.kind||currentKind)}</select></div><div><label>Název</label><input name="title" required value="${esc(o.title)}"></div><div><label>Začátek</label><input name="start_date" type="date" value="${esc(o.start_date)}"></div><div><label>Konec</label><input name="end_date" type="date" value="${esc(o.end_date)}"></div><div><label>Soutěž se hodnotí podle</label><select name="metric_type"><option value="sales" ${metric==='sales'?'selected':''}>Prodeje</option><option value="recruits" ${metric==='recruits'?'selected':''}>ANC / nováčky</option><option value="both" ${metric==='both'?'selected':''}>Prodeje + ANC</option></select></div><div class="full"><label>Odměnové milníky</label><textarea name="milestones_text">${esc(milestones)}</textarea><div class="form-help">Prodeje: 1|Dárek · ANC: 1|Dárek · Obojí: 3|Dárek|1</div></div><div><label>Pravidlo nováčků</label><select name="qualification_rule"><option value="" ${!o.qualification_rule?'selected':''}>Všichni přivedení</option><option value="vian30" ${o.qualification_rule==='vian30'?'selected':''}>VIAN – prodej do 30 dnů</option></select></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}
@@ -793,80 +718,5 @@ main{background:linear-gradient(135deg,#f7fcff 0%,#fbf8ff 48%,#fff8fc 100%)!impo
 .calendar-toolbar{display:grid;grid-template-columns:54px 1fr 54px;gap:12px;align-items:center}.calendar-weekdays,.calendar-month{display:grid!important;grid-template-columns:repeat(7,minmax(0,1fr))!important;gap:8px!important}.calendar-weekdays{margin-top:12px}.calendar-weekdays b{text-align:center;padding:9px 3px;border-radius:11px;background:linear-gradient(135deg,#eaf7ff,#fff0f7);color:#52617e;font-size:12px}.calendar-cell{min-height:142px;background:rgba(255,255,255,.96);border:1px solid #e1e5f4;border-radius:15px;padding:8px;box-shadow:0 8px 22px rgba(65,68,120,.07);cursor:pointer;overflow:hidden;transition:.12s}.calendar-cell:hover{transform:translateY(-2px);box-shadow:0 13px 28px rgba(73,70,145,.14)}.calendar-cell.out{opacity:.38}.calendar-cell.today{border:2px solid #646bea;background:linear-gradient(155deg,#fff,#edf2ff)}.calendar-cell.weekend{background:linear-gradient(160deg,#fff,#fff7fb)}.calendar-cell.vw-start{box-shadow:inset 0 4px 0 #35cf91,0 8px 22px rgba(65,68,120,.07)}.calendar-cell.vw-end{box-shadow:inset 0 -4px 0 #ff6b78,0 8px 22px rgba(65,68,120,.07)}.calendar-numrow{display:flex;justify-content:space-between;align-items:center;gap:4px}.calendar-num{font-weight:900;color:#20294f}.calendar-cell.today .calendar-num{display:grid;place-items:center;width:27px;height:27px;border-radius:50%;background:#646bea;color:#fff}.nameday{font-size:9px;color:#966b8c;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.calendar-event{padding:5px 6px;border-radius:8px;margin-top:4px;font-size:9px;line-height:1.2;font-weight:750;overflow-wrap:anywhere}.cal-task{background:#eee9ff;color:#5944b7}.cal-comp,.cal-deadline{background:#fff0d6;color:#986300}.cal-custom{background:#e7f4ff;color:#17639c}.cal-delivery{background:#e8faef;color:#187644}.cal-meeting,.cal-op{background:#e6f8ff;color:#16708b}.cal-tl{background:#ffe8f3;color:#a63068}.cal-big{background:linear-gradient(135deg,#eee8ff,#ffe7f5);color:#6541a7}.cal-vw{background:#e9fff2;color:#187548}.cal-bday{background:#fff2d9;color:#9a6412}.calendar-addhint{font-size:9px;color:#a39ab4;margin-top:5px;opacity:0}.calendar-cell:hover .calendar-addhint{opacity:1}
 @media(max-width:760px){.calendar-weekdays,.calendar-month{gap:3px!important}.calendar-cell{min-height:100px;padding:5px;border-radius:9px}.nameday{display:none}.calendar-event{font-size:7px;padding:3px}.calendar-weekdays b{font-size:10px;padding:6px 1px}}
 </style>
-
-
-<style id="lh-v544-calendar-style">
-.calendar-cell.vw-a{background:linear-gradient(155deg,#f2fbff,#eaf6ff)!important}
-.calendar-cell.vw-b{background:linear-gradient(155deg,#fff4fa,#f5efff)!important}
-.calendar-cell.vw-c{background:linear-gradient(155deg,#f1fff7,#ebfbf4)!important}
-.calendar-cell.vw-first{border-top:4px solid #35cf91!important}
-.calendar-cell.vw-last{border-bottom:4px solid #ff6b78!important}
-.cal-vw-start{background:#dcf9e9!important;color:#147447!important}
-.cal-vw-end{background:#ffe6e9!important;color:#a43743!important}
-.cal-op{background:#e4f7ff!important;color:#126d89!important}
-.cal-tl{background:#ffe7f2!important;color:#a22f67!important}
-.cal-big{background:linear-gradient(135deg,#e9e2ff,#ffe4f2)!important;color:#6541a7!important}
-</style>
-<script id="lh-v544-calendar-script">
-(function(){
-  const baseRender = window.renderCalendar;
-  if(typeof baseRender !== 'function') return;
-
-  function plusDay(s){
-    const d=new Date(s+'T12:00:00'); d.setDate(d.getDate()+1);
-    return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-  }
-  function periods(){
-    try { return Array.isArray(vorwerkPeriods) ? vorwerkPeriods : []; }
-    catch(e){ return []; }
-  }
-  function addChip(cell, cls, title){
-    if(!cell || cell.querySelector('[data-v544="'+cls+'"]')) return;
-    const x=document.createElement('div');
-    x.className='calendar-event '+cls;
-    x.dataset.v544=cls;
-    x.textContent=title;
-    const hint=cell.querySelector('.calendar-addhint');
-    cell.insertBefore(x,hint||null);
-  }
-  function enhance(){
-    const grid=document.getElementById('calendarMonth');
-    if(!grid) return;
-    const cells=[...grid.querySelectorAll('.calendar-cell')];
-    if(!cells.length) return;
-
-    const title=(document.getElementById('calendarMonthTitle')?.textContent||'').trim();
-    const cz=['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'];
-    const mm=cz.findIndex(x=>title.toLowerCase().startsWith(x));
-    const yy=parseInt((title.match(/\d{4}/)||[])[0]||new Date().getFullYear(),10);
-    if(mm<0) return;
-
-    const first=new Date(yy,mm,1,12), offset=(first.getDay()+6)%7;
-    const start=new Date(yy,mm,1-offset,12);
-    const ps=[...periods()].filter(p=>p.start_date&&p.end_date).sort((a,b)=>a.start_date.localeCompare(b.start_date));
-
-    cells.forEach((cell,i)=>{
-      const d=new Date(start); d.setDate(start.getDate()+i);
-      const iso=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
-      const p=ps.find(p=>iso>=p.start_date&&iso<=p.end_date);
-      if(p){
-        const pi=Math.max(0,ps.indexOf(p));
-        cell.classList.add(['vw-a','vw-b','vw-c'][pi%3]);
-        if(iso===p.start_date){ cell.classList.add('vw-first'); addChip(cell,'cal-vw-start','🚀 Začátek · '+(p.title||'Vorwerk měsíc')); }
-        if(iso===p.end_date){ cell.classList.add('vw-last'); addChip(cell,'cal-vw-end','🏁 Konec · '+(p.title||'Vorwerk měsíc')); }
-      }
-      const dow=d.getDay();
-      const isBig=dow===1 && ps.some(p=>plusDay(p.end_date)===iso);
-      if(dow===1) addChip(cell,isBig?'cal-big':'cal-op',isBig?'💜 Velká porada':'🩵 Porada OP');
-      if(dow===5) addChip(cell,'cal-tl','🩷 Porada TL');
-    });
-  }
-
-  window.renderCalendar=function(){
-    baseRender.apply(this,arguments);
-    enhance();
-  };
-})();
-</script>
 
 </body></html>
