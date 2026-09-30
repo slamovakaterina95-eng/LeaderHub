@@ -1,4 +1,4 @@
-<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174d42"><title>LeaderHub 5.5.1</title>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#174d42"><title>LeaderHub 5.6.0</title>
 <style>
 :root{--bg:#f4f7f6;--card:#fff;--text:#173b33;--muted:#70817b;--brand:#1f715f;--soft:#e6f2ee;--line:#dce7e3;--danger:#b74848}*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}.hidden{display:none!important}button{border:0;border-radius:14px;padding:12px 15px;font-weight:750}.primary{background:var(--brand);color:#fff}.primary:disabled,.secondary:disabled{opacity:.55;cursor:wait}.secondary{background:var(--soft);color:var(--text)}.danger{background:#fdeaea;color:var(--danger)}input,select,textarea{width:100%;padding:13px;border:1px solid var(--line);border-radius:13px;background:#fff}.auth{min-height:100vh;display:grid;place-items:center;padding:24px}.auth-card{width:min(460px,100%);background:#fff;padding:28px;border-radius:24px;box-shadow:0 16px 50px #164b3d18}.stack{display:grid;gap:13px}.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}.side{background:#153f36;color:#fff;padding:26px 18px}.brand{font-size:28px;font-weight:850}.tag{font-size:12px;color:#c6ddd5;margin:5px 0 24px}.nav{display:grid;gap:7px}.nav button{text-align:left;background:transparent;color:#e3efeb}.nav button.active{background:#ffffff20}.mobile{display:none}main{padding:28px;max-width:1450px;width:100%}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px}.top h1{margin:0;font-size:34px}.muted{color:var(--muted)}.section{display:none}.section.active{display:block}.grid{display:grid;gap:16px}.stats{grid-template-columns:repeat(4,1fr)}.two{grid-template-columns:1.2fr 1fr}.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 10px 30px #164b3d0d}.stat strong{display:block;font-size:34px;margin-top:6px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.toolbar input{max-width:330px}.toolbar select{max-width:230px}.item{padding:14px 0;border-bottom:1px solid var(--line)}.item:last-child{border-bottom:0}.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.actions{display:flex;gap:8px;flex-wrap:wrap}.pill{display:inline-block;padding:5px 9px;background:var(--soft);border-radius:999px;font-size:13px;margin:5px 5px 0 0}.modal{position:fixed;inset:0;background:#081d18a8;display:none;place-items:center;padding:18px;z-index:20}.modal.open{display:grid}.modalbox{background:#fff;width:min(900px,100%);max-height:92vh;overflow:auto;border-radius:24px;padding:22px}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.full{grid-column:1/-1}label{font-size:14px;font-weight:800;display:block;margin-bottom:6px}.section-title{grid-column:1/-1;border-top:1px solid var(--line);padding-top:14px;margin-top:8px;font-size:18px}.accessory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.accessory{display:flex;align-items:center;gap:8px;border:1px solid var(--line);padding:10px;border-radius:12px}.accessory input{width:auto}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tabs button.active{background:var(--brand);color:#fff}.progress{height:12px;background:#edf1ef;border-radius:999px;overflow:hidden}.progress div{height:100%;background:var(--brand)}.rank{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--soft);font-weight:850;margin-right:10px}.mini-btn{padding:7px 10px;border-radius:10px}.team-summary{grid-template-columns:repeat(3,1fr);margin-bottom:16px}.team-name{display:flex;align-items:center}.empty-note{padding:18px 0;color:var(--muted)}
 @media(max-width:980px){.team-summary{grid-template-columns:repeat(3,1fr)}.app{grid-template-columns:1fr}.side{display:none}.mobile{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;background:#fffffff2;padding:8px 5px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--line);z-index:10}.mobile button{font-size:11px;padding:10px 3px;background:transparent;color:var(--muted)}.mobile button.active{background:var(--soft);color:var(--text)}main{padding:20px 16px 95px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.stats,.two,.formgrid,.accessory-grid,.team-summary{grid-template-columns:1fr}.top,.row{align-items:flex-start;flex-direction:column}.actions{width:100%}.actions button{flex:1}.toolbar input,.toolbar select{max-width:none}}
@@ -125,7 +125,7 @@ body{background:radial-gradient(circle at 12% 8%,#dff7ff 0,transparent 24%),radi
 </style>
 </head><body>
 <div id="authView" class="auth"><div class="auth-card"><h1>LeaderHub</h1><p class="muted">by Kačka · přihlášení a synchronizace</p><div class="stack"><input id="email" type="email" placeholder="E-mail"><input id="password" type="password" placeholder="Heslo"><button id="loginBtn" class="primary">Přihlásit se</button><button id="signupBtn" class="secondary">Vytvořit účet</button><div id="authMsg" class="muted"></div></div></div></div>
-<div id="appView" class="app hidden"><aside class="side"><div class="brand">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader · v5.5.1</div><div class="nav"><button class="active" data-page="dashboard">🏠 Přehled</button><button data-page="contacts">👥 Kontakty</button><button data-page="forms">📩 Dotazníky</button><button data-page="tasks">✅ Úkoly</button><button data-page="calendar">📅 Kalendář</button><button data-page="team">👩‍💼 Tým</button><button data-page="sales">🧾 Prodeje</button><button data-page="goals">🎯 Měsíční cíle</button><button data-page="competitions">🏆 Soutěže</button><button data-page="statistics">📊 Statistiky</button><button data-page="smartnotes">📝 Zápisník</button><button data-page="settings">⚙️ Nastavení</button></div><div id="motivationSide" class="motivation-side"></div></aside><main>
+<div id="appView" class="app hidden"><aside class="side"><div class="brand">LeaderHub</div><div class="tag">by Kačka · Thermomix Team Leader · v5.6.0</div><div class="nav"><button class="active" data-page="dashboard">🏠 Přehled</button><button data-page="contacts">👥 Kontakty</button><button data-page="forms">📩 Dotazníky</button><button data-page="tasks">✅ Úkoly</button><button data-page="calendar">📅 Kalendář</button><button data-page="team">👩‍💼 Tým</button><button data-page="sales">🧾 Prodeje</button><button data-page="goals">🎯 Měsíční cíle</button><button data-page="competitions">🏆 Soutěže</button><button data-page="statistics">📊 Statistiky</button><button data-page="smartnotes">📝 Zápisník</button><button data-page="settings">⚙️ Nastavení</button></div><div id="motivationSide" class="motivation-side"></div></aside><main>
 <section id="dashboard" class="section active"><div id="systemWarning" class="card hidden" style="margin-bottom:16px;background:#fff8e7;color:#7a5800"></div><div class="top"><div><h1>Hezký den, Kačko 👋</h1><div id="dateNow" class="muted"></div><div id="motivationTop" class="motivation-top"></div></div><div class="quick-add"><button class="secondary" onclick="openTask()">+ Úkol</button><button class="secondary" onclick="openContact()">+ Kontakt</button><button class="primary" onclick="openSale()">+ Prodej</button><button id="logoutBtn" class="secondary">Odhlásit</button></div></div><div class="hero-goal"><div class="card"><div class="section-subtitle" id="dashPeriodTitle">Aktuální Vorwerk měsíc</div><div class="hero-number"><span id="dashTeamActual">0</span> / <span id="dashTeamTarget">0</span> TM</div><div id="dashTeamRemaining" class="hero-sub">Nastav týmový cíl v Měsíčních cílech.</div><div class="progress" style="margin-top:14px;height:16px"><div id="dashTeamProgress" style="width:0%"></div></div><div id="dashMemberBreakdown" class="muted" style="margin-top:12px"></div></div><div class="card"><div class="section-subtitle">Co potřebuje moji pozornost</div><div id="dashAttention" class="attention-list"></div></div></div><div class="grid stats"><button class="card stat dash-stat-card" onclick="showSection('sales')"><span class="muted">Moje prodeje · tento měsíc</span><strong id="statMySales">0</strong><div class="muted" id="statMyGoalText"></div><div class="total-sales-note">Celkem za celou historii: <b id="statMySalesTotal">0</b> TM</div></button><button class="card stat dash-stat-card" onclick="showSection('team')"><span class="muted">Aktivní poradci</span><strong id="statActiveMembers">0</strong></button><button class="card stat dash-stat-card" onclick="showTeamNewcomers()"><span class="muted">Nováčci tento měsíc</span><strong id="statRecruits">0</strong></button><button class="card stat dash-stat-card" onclick="showSection('tasks')"><span class="muted">Úkoly dnes / probíhá</span><strong id="statTasks">0</strong></button></div><div class="team-modern"><div class="card"><div class="row"><div class="section-subtitle">🎯 Plnění cíle – tým</div><button class="secondary mini-btn" onclick="showSection('goals')">Detail →</button></div><div id="dashTeamTable" class="team-progress-list"></div></div><div class="card quick-overview"><div class="section-subtitle">📊 Rychlý přehled</div><div id="dashQuickOverview"></div></div></div><div class="card week-card" style="margin-top:16px"><div class="row"><div><div class="section-subtitle">📅 Můj týden</div><div class="muted">Úkoly, schůzky a důležité Vorwerk termíny na jednom místě.</div></div><button class="secondary mini-btn" onclick="showSection('calendar')">Celý kalendář →</button></div><div id="dashWeek" class="week-strip"></div></div><div class="grid two" style="margin-top:16px"><div class="card"><h3>Dnes a probíhá</h3><div id="dashTasks"></div></div><div class="card"><h3>Kontrola dat</h3><div id="dashDataCheck"></div></div></div></section>
 <section id="contacts" class="section"><div class="top"><div><h1>Moje kontakty</h1><div class="muted">Standardně vidíš jen kontakty, které sis nechala ve svém seznamu.</div></div><div class="actions"><button class="secondary" onclick="openContactPool()">+ Přidat od poradce</button><button class="primary" onclick="openContact()">+ Nový kontakt</button></div></div><div class="card"><div class="toolbar"><input id="searchContacts" placeholder="Hledat jméno, telefon nebo město..."><select id="filterType"><option value="">Všechny typy</option><option>Zájemce</option><option>Klient</option></select><select id="filterStatus"><option value="">Všechny stavy</option><option>Nový zájemce</option><option>Domluvená ukázka</option><option>Čeká na vyjádření</option><option>Klient</option><option>Nezájem</option></select><button class="secondary" onclick="exportContacts()">Export CSV</button></div><div id="contactsList"></div></div></section>
 <section id="forms" class="section"><div class="top"><div><h1>Dotazníky</h1><div class="muted">Odpovědi z veřejných formulářů. Do Kontaktů se nic nepřidá bez tvého rozhodnutí.</div></div></div><div class="grid stats" style="margin-bottom:16px"><div class="card stat"><span class="muted">Nové odpovědi</span><strong id="formNewCount">0</strong></div><div class="card stat"><span class="muted">Celkem odpovědí</span><strong id="formTotalCount">0</strong></div></div><div class="card"><div class="toolbar"><input id="searchForms" placeholder="Hledat jméno, telefon nebo e-mail…" oninput="renderFormSubmissions()"><select id="formStatusFilter" onchange="renderFormSubmissions()"><option value="">Všechny stavy</option><option value="Nový">Nový</option><option value="Domluvena ukázka">Domluvena ukázka</option><option value="Vyřízeno">Vyřízeno</option></select></div><div id="formSubmissionsList"></div></div></section><section id="tasks" class="section"><div class="top"><div><h1>Úkoly</h1><div class="muted">Další kroky a připomínky. Hotové zůstávají v historii, ale nepřekážejí.</div></div><button class="primary" onclick="openTask()">+ Nový úkol</button></div><div class="card"><div class="filter-row"><button class="secondary active" data-task-filter="active" onclick="setTaskFilter('active',this)">Aktivní</button><button class="secondary" data-task-filter="done" onclick="setTaskFilter('done',this)">Hotové</button><button class="secondary" data-task-filter="all" onclick="setTaskFilter('all',this)">Všechny</button><span class="task-filter-note">Hotové úkoly se nemažou.</span></div><div id="tasksList"></div></div></section>
@@ -133,7 +133,7 @@ body{background:radial-gradient(circle at 12% 8%,#dff7ff 0,transparent 24%),radi
 
 <section id="sales" class="section"><div class="top"><div><h1>Prodeje</h1><div class="muted">Každý prodej má svoje datum, závoz a automatické zařazení.</div></div><button class="primary" onclick="openSale()">+ Přidat prodej</button></div><div class="grid two"><div class="card"><div class="toolbar"><select id="salesMemberFilter" onchange="applySalesMemberFilter(this.value)"><option value="">Všichni poradci</option></select><input id="salesNameFilter" placeholder="Nebo napiš jméno poradce…" oninput="renderSales()"><select id="salesPeriodFilter" onchange="renderSales()"><option value="">Všechna období</option></select><select id="salesHistoryFilter" class="sales-filter-extra" onchange="renderSales()"><option value="all">Všechny prodeje</option><option value="current">Jen nové</option><option value="historical">Jen historické</option><option value="check">Ke kontrole</option></select></div><div id="salesFilterStatus" class="sales-filter-status"></div><div id="salesList"></div></div><div class="card"><div class="row"><div><div class="section-subtitle">Vorwerk měsíce</div><div class="muted">Nastav přesná období a poslední den závozu.</div></div><button class="secondary" onclick="openPeriod()">+ Období</button></div><div id="periodsList"></div></div></div></section>
 <section id="goals" class="section"><div class="top"><div><h1>Měsíční cíle a reporty</h1><div class="muted">Rozdělení týmového cíle, plán a vyhodnocení Vorwerk měsíce.</div></div></div><div class="card"><div class="goal-head"><div><label>Vorwerk měsíc</label><select id="goalPeriod" onchange="renderGoals()"></select><div class="form-help">Po otevření se automaticky vybere aktuální Vorwerk měsíc.</div></div><div><label>Týmový cíl</label><input id="teamGoalInput" type="number" min="0" value="0"></div><div class="actions"><button class="secondary" onclick="suggestGoals()">Navrhnout rozdělení</button><button class="primary" onclick="saveGoals()">Uložit cíle</button></div></div><div id="goalStatus" class="muted" style="margin:12px 0"></div><div id="goalRows"></div></div><div class="grid two" style="margin-top:16px"><div class="card"><div class="tabs"><button id="reportPlanBtn" class="secondary active" onclick="setReportMode('plan')">Plán měsíce</button><button id="reportEvalBtn" class="secondary" onclick="setReportMode('eval')">Vyhodnocení měsíce</button></div><div id="reportPreview" class="report-box"></div><div class="actions" style="margin-top:14px"><button class="secondary" onclick="copyReport()">Kopírovat</button><button class="secondary" onclick="shareWhatsApp()">WhatsApp</button><button class="secondary" onclick="shareEmail()">E-mail</button><button class="secondary" onclick="printReport()">PDF / tisk</button></div></div><div class="card"><div class="section-subtitle">Jak se cíl navrhuje</div><div class="muted">LeaderHub bere v úvahu úroveň aktivity poradce, výsledky z předchozích 3 Vorwerk měsíců a to, zda je poradce nový. Návrh můžeš kdykoliv ručně přepsat. Součet musí přesně sedět na týmový cíl.</div><div style="margin-top:14px" class="muted">Kapacita: <b>Vysoká aktivita</b> / <b>Standardní</b> / <b>Nižší aktivita</b> / <b>Nováček</b>.</div></div></div></section>
-<section id="statistics" class="section"><div class="top"><div><h1>Statistiky měsíce</h1><div class="muted">Prodeje, vývoj týmu a získané odměny na jednom místě.</div></div><select id="statisticsPeriod" class="month-select" onchange="window._lhStatisticsPeriod=this.value;renderStatistics()"></select></div><div id="statisticsSummary" class="month-stats-grid"></div><div class="grid two"><div class="card"><div class="section-subtitle">📊 Prodeje poradců</div><div id="statisticsChart" class="month-chart" style="margin-top:16px"></div></div><div class="card"><div class="section-subtitle">🏆 Získané odměny</div><div class="muted" style="margin:5px 0 8px">Filtruj, kdo si v daném měsíci vyzískal jaký dárek.</div><div class="reward-filters"><select id="rewardMemberFilter" onchange="window._lhRewardMember=this.value;renderStatistics()"><option value="">Všichni poradci</option></select><select id="rewardGiftFilter" onchange="window._lhRewardGift=this.value;renderStatistics()"><option value="">Všechny dárky</option></select></div><div id="statisticsRewards"></div></div></div><div class="card" style="margin-top:16px"><div class="section-subtitle">Přehled poradce za měsíc</div><div id="statisticsTable"></div></div></section>
+<section id="statistics" class="section"><div class="top"><div><h1>Statistiky měsíce</h1><div class="muted">Prodeje, vývoj týmu a získané odměny na jednom místě.</div></div><select id="statisticsPeriod" class="month-select" onchange="renderStatistics(this.value)"></select></div><div id="statisticsSummary" class="month-stats-grid"></div><div class="grid two"><div class="card"><div class="section-subtitle">📊 Prodeje poradců</div><div id="statisticsChart" class="month-chart" style="margin-top:16px"></div></div><div class="card"><div class="section-subtitle">🏆 Získané odměny</div><div class="muted" style="margin:5px 0 8px">Filtruj, kdo si v daném měsíci vyzískal jaký dárek.</div><div class="reward-filters"><select id="rewardMemberFilter" onchange="renderStatistics(null,this.value,null)"><option value="">Všichni poradci</option></select><select id="rewardGiftFilter" onchange="renderStatistics(null,null,this.value)"><option value="">Všechny dárky</option></select></div><div id="statisticsRewards"></div></div></div><div class="card" style="margin-top:16px"><div class="section-subtitle">Přehled poradce za měsíc</div><div id="statisticsTable"></div></div></section>
 <section id="competitions" class="section"><div class="top"><div><h1>Soutěže a roční program</h1><div class="muted">Roční, měsíční, týdenní a denní cíle</div></div><button class="primary" onclick="openCompetition()">+ Nová soutěž</button></div><div class="tabs"><button class="secondary active" data-kind="Roční">Roční program</button><button class="secondary" data-kind="Měsíční">Měsíční</button><button class="secondary" data-kind="Týdenní">Týdenní</button><button class="secondary" data-kind="Denní">Denní</button></div><div class="card"><div id="competitionsList"></div></div></section>
 <section id="smartnotes" class="section"><div class="top"><div><h1>Chytrý zápisník 📝</h1><div class="muted">Napiš si poznámky z porady normálně vlastními slovy. LeaderHub rozpozná termíny, soutěže a prodeje a před uložením ti ukáže, co chce vytvořit.</div></div></div><div class="grid two"><div class="card"><label>Poznámky z porady</label><textarea id="smartNoteText" rows="12" placeholder="Např.
 16.-19.9 jsme ve Španělsku
@@ -418,28 +418,77 @@ function header(m,c){let n=milestoneNeeds(m,c),p=[];if(n.sales)p.push(`${n.sales
 function competitionEligibleMembers(c){let base=[...members].filter(p=>memberStatusValue(p)!=='Ukončený');let title=String(c.title||'').toLowerCase();if(title.includes('nováček')&&title.includes('30')&&c.start_date){return base.filter(p=>p.joined_at&&p.joined_at>=c.start_date&&(!c.end_date||p.joined_at<=c.end_date))}return base}
 function renderCompetitionTable(c){let ms=competitionMilestones(c),rows=competitionEligibleMembers(c).sort((a,b)=>{let ea=statsFor(c,a),eb=statsFor(c,b);return competitionMetric(c)==='recruits'?Number(eb.recruits_count||0)-Number(ea.recruits_count||0):Number(eb.sales_count||0)-Number(ea.sales_count||0)||Number(eb.recruits_count||0)-Number(ea.recruits_count||0)});if(!rows.length)return'<div class="empty-note">Nejdřív přidej poradce v části Tým.</div>';return`<div class="reward-legend"><span><span class="reward-dot orange">✓</span>získáno, nevyzvednuto</span><span><span class="reward-dot green">✓</span>vyzvednuto</span></div><div class="table-wrap"><table class="rewards-table"><thead><tr><th>Poradce</th><th class="center">Prodeje</th><th class="center">ANC</th><th>Nejvyšší odměna</th>${ms.map(m=>`<th class="center">${header(m,c)}</th>`).join('')}</tr></thead><tbody>${rows.map(p=>{let e=statsFor(c,p);return`<tr><td><b>${esc(p.full_name)}</b><div class="next-reward">${nextRewardText(e,c)}</div></td><td class="center"><button class="secondary mini-btn" title="Rozkliknout započítané prodeje" onclick="openCompetitionSalesDetail('${c.id}','${p.id}')">${Number(e.sales_count||0)}</button></td><td class="center">${Number(e.recruits_count||0)}</td><td>${esc(highestReward(e,c))}</td>${ms.map(m=>`<td class="center">${rewardMark(c,p,m,e)}</td>`).join('')}</tr>`}).join('')}</tbody></table></div>`}
 function statisticsPeriods(){return [...vorwerkPeriods].filter(p=>String(p.title||'').match(/2026|2025|2024|2023/)).sort((a,b)=>String(b.start_date).localeCompare(String(a.start_date)))}
-function rewardAchievedInPeriod(c,p,m,period){let r=rewardRecord(c.id,p.id,m);let d=r?.achieved_at||milestoneAchievedDate(c,p,m);return d&&inRange(d,period.start_date,period.delivery_deadline||period.end_date)}
+function rewardAchievedInPeriod(c,p,m,period){if(c?._historicalWinnerMemberId&&String(p.id)!==String(c._historicalWinnerMemberId))return false;let r=rewardRecord(c.id,p.id,m);let d=r?.achieved_at||milestoneAchievedDate(c,p,m);return d&&inRange(d,period.start_date,period.delivery_deadline||period.end_date)}
 function rewardMemberEligible(c,member){if(!competitionMemberEligible(c,member))return false;let title=String(c.title||'').toLowerCase(),note=String(c.notes||'');if(note.includes('[LH_RULE:VIAN_NEWCOMER_30]'))return !!(member.joined_at||enrollmentFor(member.id)?.joined_at);if(title.includes('nováček')&&title.includes('30'))return !!(member.joined_at&&c.start_date&&member.joined_at>=c.start_date&&(!c.end_date||member.joined_at<=c.end_date));return true}
 function rewardsForMemberPeriod(member,period){let out=[],seen=new Set();for(let c of competitions){if(!rewardMemberEligible(c,member))continue;for(let m of competitionMilestones(c)){if(!rewardAchievedInPeriod(c,member,m,period))continue;let key=[String(c.title||'').trim().toLowerCase(),String(m.reward||'').trim().toLowerCase(),String(rewardRecord(c.id,member.id,m)?.achieved_at||milestoneAchievedDate(c,member,m)||'')].join('|');if(seen.has(key))continue;seen.add(key);out.push({competition:c.title,reward:m.reward,date:rewardRecord(c.id,member.id,m)?.achieved_at||milestoneAchievedDate(c,member,m)})}}return out.sort((a,b)=>String(a.date).localeCompare(String(b.date)))}
-function renderStatistics(){
- let sel=$('#statisticsPeriod');if(!sel)return;let ps=statisticsPeriods(),requested=sel.value||window._lhStatisticsPeriod||'',cur=currentVorwerkPeriod();
- let sig=ps.map(p=>String(p.id)).join('|'),oldSig=[...sel.options].map(o=>o.value).join('|');
- if(oldSig!==sig)sel.innerHTML=ps.map(p=>`<option value="${p.id}">${esc(p.title)}</option>`).join('');
- let chosen=ps.some(p=>String(p.id)===String(requested))?requested:(cur?.id||ps[0]?.id||'');sel.value=chosen;window._lhStatisticsPeriod=chosen;
- let p=ps.find(x=>String(x.id)===String(chosen));if(!p)return;
- let active=members.filter(m=>memberStatusValue(m)!=='Ukončený'),rows=active.map(m=>({m,count:periodSales(m.id,p),rewards:rewardsForMemberPeriod(m,p)})).sort((a,b)=>b.count-a.count||a.m.full_name.localeCompare(b.m.full_name,'cs'));
- let total=rows.reduce((n,x)=>n+x.count,0),newcomers=members.filter(m=>m.joined_at&&inRange(m.joined_at,p.start_date,p.delivery_deadline||p.end_date)).length,rewardCount=rows.reduce((n,x)=>n+x.rewards.length,0);
- $('#statisticsSummary').innerHTML=`<div class="card stat"><span class="muted">Prodeje týmu</span><strong>${total}</strong><div class="muted">${esc(p.title)}</div></div><div class="card stat"><span class="muted">Nové nástupy</span><strong>${newcomers}</strong></div><div class="card stat"><span class="muted">Získané odměny</span><strong>${rewardCount}</strong></div>`;
- let mf=$('#rewardMemberFilter'),gf=$('#rewardGiftFilter'),mv=mf?.value||window._lhRewardMember||'',gv=gf?.value||window._lhRewardGift||'';
- if(mf){mf.innerHTML='<option value="">Všichni poradci</option>'+active.map(m=>`<option value="${m.id}">${esc(m.full_name)}</option>`).join('');if(active.some(m=>String(m.id)===String(mv)))mf.value=mv;else mf.value='';window._lhRewardMember=mf.value}
- let gifts=[...new Set(rows.flatMap(x=>x.rewards.map(r=>r.reward)))].sort((a,b)=>a.localeCompare(b,'cs'));if(gf){gf.innerHTML='<option value="">Všechny dárky</option>'+gifts.map(g=>`<option value="${esc(g)}">${esc(g)}</option>`).join('');gf.value=gifts.includes(gv)?gv:'';window._lhRewardGift=gf.value}
- mv=mf?.value||'';gv=gf?.value||'';let visibleRows=mv?rows.filter(x=>String(x.m.id)===String(mv)):rows;
- let statColor=v=>v>=100?'#20b66a':v>=75?'#65c84a':v>=50?'#f3bb32':v>=25?'#ff7a2f':'#f04452';
- $('#statisticsChart').innerHTML=visibleRows.map(x=>{let g=Number(memberGoal(x.m.id,p.id)?.target||(x.m.id===teamLeader()?.id?defaultTlGoal:0)),pc=g?Math.min(100,Math.round(x.count/g*100)):0;return `<div class="chart-row"><b>${esc(x.m.full_name)}</b><div class="chart-track"><div class="chart-bar" style="width:${pc}%;background:${statColor(pc)}"></div></div><strong style="color:${statColor(pc)}">${pc}% · ${x.count}/${g||'—'}</strong></div>`}).join('')||'<div class="empty-note">Bez prodejů.</div>';
- let filtered=visibleRows.map(x=>({...x,rewards:x.rewards.filter(r=>!gv||r.reward===gv)})).filter(x=>x.rewards.length);$('#statisticsRewards').innerHTML=filtered.length?filtered.map(x=>`<div class="reward-history-row"><b>${esc(x.m.full_name)}</b><div>${x.rewards.map(r=>`<span class="month-reward">🎁 ${esc(r.reward)} · ${esc(r.competition)}${r.date?' · '+fmt(r.date):''}</span>`).join('')}</div></div>`).join(''):'<div class="empty-note">Pro zvolený filtr zatím není evidovaná odměna.</div>';
- $('#statisticsTable').innerHTML=`<div class="table-wrap"><table class="rewards-table"><thead><tr><th>Poradce</th><th class="center">Prodeje</th><th>Získané odměny</th></tr></thead><tbody>${visibleRows.map(x=>`<tr><td><b>${esc(x.m.full_name)}</b></td><td class="center">${x.count}</td><td>${x.rewards.length?x.rewards.map(r=>esc(r.reward)).join(' · '):'—'}</td></tr>`).join('')}</tbody></table></div>`;
-}
+function renderStatistics(forcedPeriodId=null,forcedMemberId=null,forcedGift=null){
+  let sel=$('#statisticsPeriod'); if(!sel)return;
+  let ps=statisticsPeriods(),cur=currentVorwerkPeriod();
 
+  // Period is held independently from the DOM, so changing September -> October -> September
+  // can never be overwritten by a re-render of the select itself.
+  if(forcedPeriodId!==null) window._lhStatisticsPeriod=String(forcedPeriodId);
+  let wanted=String(window._lhStatisticsPeriod||sel.value||cur?.id||ps[0]?.id||'');
+
+  let sig=ps.map(p=>String(p.id)).join('|');
+  let oldSig=[...sel.options].map(o=>String(o.value)).join('|');
+  if(oldSig!==sig){
+    sel.innerHTML=ps.map(p=>`<option value="${p.id}">${esc(p.title)}</option>`).join('');
+  }
+  let p=ps.find(x=>String(x.id)===wanted);
+  if(!p){
+    p=ps.find(x=>String(x.id)===String(cur?.id))||ps[0];
+    wanted=String(p?.id||'');
+  }
+  if(!p)return;
+  window._lhStatisticsPeriod=wanted;
+  sel.value=wanted;
+
+  let active=members.filter(m=>memberStatusValue(m)!=='Ukončený');
+  let rows=active.map(m=>({m,count:periodSales(m.id,p),rewards:rewardsForMemberPeriod(m,p)}))
+    .sort((a,b)=>b.count-a.count||a.m.full_name.localeCompare(b.m.full_name,'cs'));
+  let total=rows.reduce((n,x)=>n+x.count,0);
+  let newcomers=members.filter(m=>m.joined_at&&inRange(m.joined_at,p.start_date,p.delivery_deadline||p.end_date)).length;
+  let rewardCount=rows.reduce((n,x)=>n+x.rewards.length,0);
+
+  $('#statisticsSummary').innerHTML=`<div class="card stat"><span class="muted">Prodeje týmu</span><strong>${total}</strong><div class="muted">${esc(p.title)}</div></div><div class="card stat"><span class="muted">Nové nástupy</span><strong>${newcomers}</strong></div><div class="card stat"><span class="muted">Získané odměny</span><strong>${rewardCount}</strong></div>`;
+
+  let mf=$('#rewardMemberFilter'),gf=$('#rewardGiftFilter');
+  if(forcedMemberId!==null) window._lhRewardMember=String(forcedMemberId);
+  if(forcedGift!==null) window._lhRewardGift=String(forcedGift);
+
+  let mv=String(window._lhRewardMember||'');
+  let gv=String(window._lhRewardGift||'');
+
+  if(mf){
+    let memberOptions='<option value="">Všichni poradci</option>'+active.map(m=>`<option value="${m.id}">${esc(m.full_name)}</option>`).join('');
+    if(mf.innerHTML!==memberOptions) mf.innerHTML=memberOptions;
+    if(!active.some(m=>String(m.id)===mv)) mv='';
+    mf.value=mv; window._lhRewardMember=mv;
+  }
+
+  let gifts=[...new Set(rows.flatMap(x=>x.rewards.map(r=>r.reward)))].sort((a,b)=>a.localeCompare(b,'cs'));
+  if(gf){
+    let giftOptions='<option value="">Všechny dárky</option>'+gifts.map(g=>`<option value="${esc(g)}">${esc(g)}</option>`).join('');
+    if(gf.innerHTML!==giftOptions) gf.innerHTML=giftOptions;
+    if(!gifts.includes(gv)) gv='';
+    gf.value=gv; window._lhRewardGift=gv;
+  }
+
+  let visibleRows=mv?rows.filter(x=>String(x.m.id)===mv):rows;
+  let statColor=v=>v>=100?'#20b66a':v>=75?'#65c84a':v>=50?'#f3bb32':v>=25?'#ff7a2f':'#f04452';
+
+  $('#statisticsChart').innerHTML=visibleRows.map(x=>{
+    let g=Number(memberGoal(x.m.id,p.id)?.target||(x.m.id===teamLeader()?.id?defaultTlGoal:0));
+    let pc=g?Math.min(100,Math.round(x.count/g*100)):0;
+    return `<div class="chart-row"><b>${esc(x.m.full_name)}</b><div class="chart-track"><div class="chart-bar" style="width:${pc}%;background:${statColor(pc)}"></div></div><strong style="color:${statColor(pc)}">${pc}% · ${x.count}/${g||'—'}</strong></div>`
+  }).join('')||'<div class="empty-note">Bez prodejů.</div>';
+
+  let filtered=visibleRows.map(x=>({...x,rewards:x.rewards.filter(r=>!gv||r.reward===gv)})).filter(x=>x.rewards.length);
+  $('#statisticsRewards').innerHTML=filtered.length?filtered.map(x=>`<div class="reward-history-row"><b>${esc(x.m.full_name)}</b><div>${x.rewards.map(r=>`<span class="month-reward">🎁 ${esc(r.reward)} · ${esc(r.competition)}${r.date?' · '+fmt(r.date):''}</span>`).join('')}</div></div>`).join(''):'<div class="empty-note">Pro zvolený filtr zatím není evidovaná odměna.</div>';
+
+  $('#statisticsTable').innerHTML=`<div class="table-wrap"><table class="rewards-table"><thead><tr><th>Poradce</th><th class="center">Prodeje</th><th>Získané odměny</th></tr></thead><tbody>${visibleRows.map(x=>`<tr><td><b>${esc(x.m.full_name)}</b></td><td class="center">${x.count}</td><td>${x.rewards.length?x.rewards.map(r=>esc(r.reward)).join(' · '):'—'}</td></tr>`).join('')}</tbody></table></div>`;
+}
 function renderCompetitions(){let seenComp=new Set();let a=competitions.filter(x=>x.kind===currentKind).filter(x=>{let k=[String(x.title||'').trim().toLowerCase(),x.start_date||'',x.end_date||'',JSON.stringify(competitionMilestones(x).map(m=>[Number(m.sales||0),Number(m.recruits||0),String(m.reward||'').trim().toLowerCase()]))].join('|');if(seenComp.has(k))return false;seenComp.add(k);return true});$('#competitionsList').innerHTML=a.map(x=>`<div class="comp-card"><div class="comp-head"><div><h3 style="margin:0">${esc(x.title)}</h3><div class="muted">${fmt(x.start_date)} – ${fmt(x.end_date)}</div><span class="metric-badge">${metricLabel(competitionMetric(x))}</span><span class="pill">Automaticky podle data prodeje</span>${competitionUsesNC(x)?'<span class="nc-rule">NC platí jen při 1. prodeji do 30 dní od nástupu</span>':''}${x.notes?`<div class="muted" style="margin-top:8px">📝 ${esc(x.notes)}</div>`:''}<div class="milestone-list">${competitionMilestones(x).map(m=>`<span class="milestone-chip">${header(m,x).replace('<br>',' → ').replace(/<[^>]+>/g,'')}</span>`).join('')}</div></div><div class="actions"><button class="secondary" onclick="openCompetition('${x.id}')">Upravit</button><button class="danger" onclick="removeRow('competitions','${x.id}')">Smazat</button></div></div>${renderCompetitionTable(x)}</div>`).join('')||'<div class="muted">V této kategorii zatím nic není.</div>'}window.openCompetitionSalesDetail=(competitionId,memberId)=>{let c=competitions.find(x=>x.id===competitionId),m=members.find(x=>x.id===memberId);if(!c||!m)return;let rows=salesInDateRange(memberId,c.start_date,c.end_date);$('#competitionSalesTitle').textContent=`Prodeje: ${m.full_name}`;$('#competitionSalesSubtitle').textContent=`${c.title} · ${fmt(c.start_date)} – ${fmt(c.end_date)} · započítáno ${rows.length}`;$('#competitionSalesBody').innerHTML=rows.length?`<div class="table-wrap"><table class="rewards-table"><thead><tr><th>Datum prodeje</th><th>Zákazník</th><th>Číslo smlouvy</th><th>Datum předání</th><th>Stav</th><th></th></tr></thead><tbody>${rows.map(x=>`<tr><td>${fmt(x.sale_date)}</td><td><b>${esc(x.customer_name||'Bez jména')}</b></td><td>${esc(x.contract_number||'—')}</td><td>${fmt(x.delivery_date)||'—'}</td><td>${esc(x.sale_status||'Platný')}</td><td><button class="secondary mini-btn" onclick="closeCompetitionSalesDetail();openSale('${x.id}')">Upravit</button></td></tr>`).join('')}</tbody></table></div>`:'<div class="empty-note">V tomto období nejsou žádné započítané prodeje tohoto poradce.</div>';$('#competitionSalesModal').classList.add('open')};
 window.closeCompetitionSalesDetail=()=>$('#competitionSalesModal').classList.remove('open');
 function milestoneAchievedDate(c,p,m){let need=milestoneNeeds(m,c),dates=[];if(need.sales){let a=competitionSalesForMember(c,p);if(a.length>=need.sales)dates.push(a[need.sales-1].sale_date)}if(need.recruits){let r=recruitsInDateRange(p.id,c.start_date,c.end_date);if(r.length>=need.recruits)dates.push(r[need.recruits-1].joined_at)}return dates.filter(Boolean).sort().pop()||''}
@@ -527,6 +576,140 @@ body{background:linear-gradient(135deg,#eef8f6 0%,#f6f2ff 48%,#fff6ed 100%);back
 .side{background:linear-gradient(180deg,#202a32 0%,#29343f 55%,#342e42 100%)}
 .side button.active{background:linear-gradient(135deg,rgba(67,157,142,.28),rgba(122,98,199,.24));border:1px solid rgba(255,255,255,.08)}
 
+
+<script id="lh552-statistics-events">
+document.addEventListener('change',function(e){
+  if(e.target?.id==='statisticsPeriod') renderStatistics(e.target.value,null,null);
+  if(e.target?.id==='rewardMemberFilter') renderStatistics(null,e.target.value,null);
+  if(e.target?.id==='rewardGiftFilter') renderStatistics(null,null,e.target.value);
+});
+</script>
+
+
+<script id="lh560-complete-fixes">
+(function(){
+  const norm=x=>String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  const memberByName=name=>members.find(m=>norm(m.full_name)===norm(name));
+  const compBy=(title,start)=>competitions.find(c=>norm(c.title)===norm(title)&&(!start||c.start_date===start));
+
+  async function upsertCompetition(payload,milestones){
+    let c=competitions.find(x=>norm(x.title)===norm(payload.title)&&x.start_date===payload.start_date);
+    if(!c){
+      let r=await sb.from('competitions').insert(payload).select('*');
+      if(r.error){console.warn('Competition insert',payload.title,r.error.message);return null}
+      c=r.data?.[0]; if(c)competitions.push(c);
+    }else{
+      let r=await sb.from('competitions').update(payload).eq('id',c.id).select('*');
+      if(!r.error&&r.data?.[0])Object.assign(c,r.data[0]);
+    }
+    if(!c)return null;
+    // Do not duplicate milestones.
+    for(const m of milestones||[]){
+      let exists=competitionMilestones(c).some(x=>Number(x.sales||0)===Number(m.sales||0)&&Number(x.recruits||0)===Number(m.recruits||0)&&norm(x.reward)===norm(m.reward));
+      if(!exists){
+        let payloadM={competition_id:c.id,sales:Number(m.sales||0),recruits:Number(m.recruits||0),reward:m.reward};
+        let rr=await sb.from('competition_milestones').insert(payloadM).select('*');
+        if(!rr.error&&rr.data)competitionMilestonesRows.push(...rr.data);
+      }
+    }
+    return c;
+  }
+
+  async function fixCutterOwnership(){
+    const kristyna=memberByName('Kristýna Thun'),eliska=memberByName('Eliška Komárková');
+    if(!kristyna||!eliska)return;
+    let cutter=competitions.find(c=>c.start_date==='2026-07-28'&&c.end_date==='2026-08-10'&&competitionMilestones(c).some(m=>norm(m.reward).includes('multifunkcni krajec')));
+    if(!cutter)return;
+    let ms=competitionMilestones(cutter).filter(m=>norm(m.reward).includes('multifunkcni krajec'));
+    for(const m of ms){
+      // Remove wrong persisted reward record for Eliška if present.
+      let wrong=rewardRecords.filter(r=>String(r.competition_id)===String(cutter.id)&&String(r.member_id)===String(eliska.id)&&(String(r.milestone_id||'')===String(m.id)||!r.milestone_id));
+      for(const r of wrong){let q=await sb.from('reward_records').delete().eq('id',r.id);if(!q.error)rewardRecords=rewardRecords.filter(x=>x.id!==r.id)}
+      // Persist Kristýna as the actual historical recipient.
+      let ok=rewardRecords.some(r=>String(r.competition_id)===String(cutter.id)&&String(r.member_id)===String(kristyna.id)&&(String(r.milestone_id||'')===String(m.id)||!r.milestone_id));
+      if(!ok){
+        let payload={competition_id:cutter.id,member_id:kristyna.id,milestone_id:m.id,achieved_at:'2026-08-10',status:'získáno'};
+        let q=await sb.from('reward_records').insert(payload).select('*');
+        if(!q.error&&q.data)rewardRecords.push(...q.data);
+      }
+    }
+    cutter._historicalWinnerMemberId=kristyna.id;
+  }
+
+  async function ensureOctober(){
+    await upsertCompetition({
+      title:'Říjen 2026 – Buďte aktivní a získejte dárek',
+      kind:'Měsíční',metric_type:'sales',start_date:'2026-09-29',end_date:'2026-10-26',
+      delivery_deadline:'2026-10-30',
+      notes:'1 TM = TM nůž na chléb. Odměny se nesčítají. Platí pro OP, TL a TLJ. Neplatí pro nováčky v základním programu / nováčky na vyzískání TM. Smlouvy 29. 9.–26. 10. 2026; call centrum do 27. 10. 2026 7:00; závoz 1.–30. 10. 2026. Vyhodnocení 12. 11. 2026; doručení odměn 30. 11. 2026.'
+    },[{sales:1,recruits:0,reward:'TM nůž na chléb'}]);
+
+    await upsertCompetition({
+      title:'Dárek pro VIAN nováčka aktivního do 30 dnů od nástupu',
+      kind:'Měsíční',metric_type:'sales',start_date:'2026-09-29',end_date:'2026-10-26',
+      delivery_deadline:'2026-10-30',
+      notes:'Pouze VIAN nováček aktivní do 30 dnů od nástupu. 1. prodej = Nester TM7; 2. prodej = Startovací sada. Vyhodnocení 9. 12. 2026; doručení odměn 22. 12. 2026.'
+    },[
+      {sales:1,recruits:0,reward:'Nester TM7'},
+      {sales:2,recruits:0,reward:'Startovací sada'}
+    ]);
+
+    // October extension of TM3 for you, preserving 100-day program.
+    if(!newcomerPrograms.some(p=>p.title==='Říjen 2026 – TM3 for you')){
+      let payload={title:'Říjen 2026 – TM3 for you',valid_from:'2026-09-29',valid_to:'2026-10-26',duration_days:100,target_sales:3,loyalty_offset:3,
+        rules:{base_price:39490,tiers:[
+          {sales:1,price:33741,discount:'10 %',base_price:37490},
+          {sales:2,price:24368,discount:'35 %',base_price:37490},
+          {sales:3,price:1,discount:'99,9 %',base_price:39490}
+        ],bonus_sale_4:'Po podpisu smlouvy o obchodním zastoupení: druhá kompletní mixovací nádoba za 0 Kč',commission_paid:false},
+        notes:'Mimořádné prodloužení TM3 for you do 26. 10. 2026. Základní program trvá 100 dní. Za prodeje v programu se nevyplácí provize.'};
+      let r=await sb.from('newcomer_programs').insert(payload).select('*');
+      if(!r.error&&r.data)newcomerPrograms.push(...r.data);
+    }
+  }
+
+  // Historical winner override for the cutter in all computations/UI.
+  const baseStatsFor=window.statsFor||statsFor;
+  if(typeof baseStatsFor==='function'){
+    window.statsFor=function(c,p){
+      let e=baseStatsFor(c,p);
+      if(c?._historicalWinnerMemberId){
+        let winner=String(p.id)===String(c._historicalWinnerMemberId);
+        return {...e,sales_count:winner?Math.max(1,Number(e.sales_count||0)):0};
+      }
+      return e;
+    }
+  }
+
+  async function run(){
+    if(!window.sb||!Array.isArray(window.competitions))return;
+    try{
+      await ensureOctober();
+      await fixCutterOwnership();
+      // Refresh current screens after data repair.
+      try{renderCompetitions()}catch(e){}
+      try{renderStatistics(window._lhStatisticsPeriod||null,window._lhRewardMember||null,window._lhRewardGift||null)}catch(e){}
+      try{renderDashboard()}catch(e){}
+    }catch(e){console.warn('LeaderHub 5.6 migration:',e)}
+  }
+  window.addEventListener('load',()=>setTimeout(run,1800));
+})();
+</script>
+
+
+<script id="lh560-branch-meetings">
+(function(){
+ const items={'2026-09-29':'🍞 Porada · Měsíc chleba','2026-10-05':'🍂 Porada · Den skořice','2026-10-12':'🍞 Porada · Mezinárodní den chleba','2026-10-19':'🍝 Porada · Den těstovin'};
+ function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+ function paint(){
+  let g=document.getElementById('calendarMonth'),t=document.getElementById('calendarMonthTitle');if(!g||!t||!g.children.length)return;
+  let names=['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'],q=t.textContent.trim().toLowerCase(),m=names.findIndex(x=>q.startsWith(x)),y=Number((q.match(/\d{4}/)||[])[0]);if(m<0||!y)return;
+  let f=new Date(y,m,1,12),off=(f.getDay()+6)%7,st=new Date(y,m,1-off,12);
+  [...g.children].forEach((c,i)=>{let d=new Date(st);d.setDate(st.getDate()+i);let k=iso(d),label=items[k];if(label&&![...c.querySelectorAll('.calendar-event')].some(x=>x.textContent===label)){let e=document.createElement('div');e.className='calendar-event cal-big';e.textContent=label;c.appendChild(e)}})
+ }
+ document.addEventListener('DOMContentLoaded',()=>{let g=document.getElementById('calendarMonth');if(g)new MutationObserver(paint).observe(g,{childList:true});setTimeout(paint,900)});
+})();
+</script>
 </body></html>`);w.document.close();w.print()};
 window.openContact=id=>open('contact',id);window.openTask=(id,contactId)=>{window._prefillTaskContact=contactId||null;open('task',id)};window.openMember=id=>open('member',id);window.openCompetition=id=>open('competition',id);function opts(a,v){return a.map(x=>`<option ${v===x?'selected':''}>${x}</option>`).join('')}function open(type,id){mode=type;editId=id||null;let arr=type==='contact'?contacts:type==='task'?tasks:type==='member'?members:competitions,o=arr.find(x=>x.id===id)||{};$('#modalTitle').textContent=(id?'Upravit ':'Přidat ')+(type==='contact'?'kontakt':type==='task'?'úkol':type==='member'?'poradce':'soutěž');$('#modalFields').innerHTML=fields(type,o);$('#modal').classList.add('open');if(type==='contact')toggleClientFields();if(type==='task')setTimeout(()=>window._prefillTaskContact=null,0)}
 function fields(type,o){if(type==='contact'){let owned=o.accessories||[],interest=o.accessory_interest||[];return`<div><label>Jméno a příjmení</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Typ</label><select name="contact_type" id="contactType" onchange="toggleClientFields()">${opts(['Zájemce','Klient'],o.contact_type||'Zájemce')}</select></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Stav</label><select name="status">${opts(['Nový zájemce','Domluvená ukázka','Čeká na vyjádření','Klient','Nezájem'],o.status||'Nový zájemce')}</select></div><div><label>Zdroj kontaktu</label><select name="source">${opts(['Smlouva / prodej','Doporučení','Sociální sítě','Firemní kontakt','Web','Telefon','E-mail','Jiný'],o.source||'Doporučení')}</select></div><div><label>Ulice</label><input name="street" value="${esc(o.street)}"></div><div><label>Město</label><input name="city" value="${esc(o.city)}"></div><div><label>PSČ</label><input name="postal_code" value="${esc(o.postal_code)}"></div><div><label><input style="width:auto" type="checkbox" name="favorite" ${o.favorite?'checked':''}> ⭐ Oblíbený</label></div><div><label>Další kontakt / připomenout</label><input name="follow_up_date" type="date" value="${esc(o.follow_up_date)}"></div><div><label>Další krok</label><input name="next_step" value="${esc(o.next_step)}"></div><div><label>Kontakt poradce</label><select name="advisor_member_id"><option value="">— moje / bez přiřazení —</option>${members.map(m=>`<option value="${m.id}" ${String(o.advisor_member_id||'')===String(m.id)?'selected':''}>${esc(m.full_name)}</option>`).join('')}</select></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div><div class="section-title client-only">Nákup</div><div class="client-only"><label>Číslo smlouvy</label><input name="contract_number" value="${esc(o.contract_number)}"></div><div class="client-only"><label>Datum nákupu</label><input name="purchase_date" type="date" value="${esc(o.purchase_date)}"></div><div class="client-only full"><label>Balíček</label><input name="package_name" value="${esc(o.package_name)}"></div><div class="section-title client-only">Zakoupené příslušenství</div><div class="client-only full accessory-grid">${accessories.map((a,i)=>`<label class="accessory"><input type="checkbox" name="acc_${i}" ${owned.includes(a)?'checked':''}>${a}</label>`).join('')}</div><div class="section-title">Zájem o příslušenství</div><div class="full accessory-grid">${accessories.map((a,i)=>`<label class="accessory"><input type="checkbox" name="interest_${i}" ${interest.includes(a)?'checked':''}>${a}</label>`).join('')}</div>`}if(type==='task'){let tm=taskMeta(o.id),cid=o.contact_id||window._prefillTaskContact||'';return`<div class="full"><label>Název úkolu</label><input name="title" required value="${esc(o.title)}"></div><div><label>Kontakt (volitelné)</label><select name="contact_id"><option value="">— bez kontaktu —</option>${contacts.map(c=>`<option value="${c.id}" ${cid===c.id?'selected':''}>${esc(c.full_name)}</option>`).join('')}</select></div><div><label>Od</label><input name="start_date" type="date" value="${esc(o.start_date||o.due_date)}"></div><div><label>Do</label><input name="end_date" type="date" value="${esc(o.end_date||o.due_date)}"></div><div><label>Čas (volitelné)</label><input name="task_time" type="time" value="${esc(o.task_time||tm.time||'')}"></div><div><label>Opakování</label><select name="repeat_rule">${opts(['Neopakovat','Týdně','Měsíčně'],o.repeat_rule||'Neopakovat')}</select></div><div><label><input style="width:auto" name="completed" type="checkbox" ${o.completed?'checked':''}> Hotovo</label></div><div class="full"><label>Poznámka / výsledek hovoru</label><textarea name="task_note" placeholder="Např. volala jsem, ukázku chce, ozve se kvůli termínu…">${esc(o.notes||tm.note||'')}</textarea><div class="form-help">Je-li úkol propojený s kontaktem, při označení Hotovo se poznámka uloží i do historie kontaktu.</div></div>`}if(type==='member'){let recruiterOptions=`<option value="">— nikdo / původní tým —</option>`+members.filter(m=>m.id!==o.id).map(m=>`<option value="${m.id}" ${o.recruited_by_member_id===m.id?'selected':''}>${esc(m.full_name)}</option>`).join('');return`<div><label>Jméno poradce</label><input name="full_name" required value="${esc(o.full_name)}"></div><div><label>Role</label><select name="role">${opts(['Team Leader','Poradce'],o.role||((o.full_name||'').includes('Kateřina Slámová')?'Team Leader':'Poradce'))}</select></div><div><label>Stav poradce</label><select name="member_status">${opts(['Aktivní','Neaktivní','Ukončený'],memberStatusValue(o))}</select></div><div><label>Úroveň aktivity / kapacita</label><select name="activity_level">${opts(['Vysoká aktivita','Standardní','Nižší aktivita','Nováček'],o.activity_level||'Standardní')}</select></div><div><label>Datum nástupu</label><input name="joined_at" type="date" value="${esc(o.joined_at)}"></div><div><label>🎂 Narozeniny</label><input name="lh_birthday" type="date" value="${esc((JSON.parse(localStorage.getItem('lhBirthdays')||'{}'))[o.full_name]||'')}"><div class="form-help">Stačí zadat datum jednou. V kalendáři se připomene každý rok.</div></div>${(()=>{let en=enrollmentFor(o.id);if(en){let pr=programForEnrollment(en);return`<div class="full locked-note"><b>Start nováčka je uzamčený</b><div>${en.onboarding_mode==='own_tm'?'Nastoupil/a s vlastním TM':'Vyzískává TM'} · ${esc(pr?.title||en.rules_snapshot?.program_title||'program při nástupu')} · do ${fmt(en.deadline)}</div><div class="form-help">Pozdější změny programů se tomuto poradci nepropíšou.</div><input type="hidden" name="existing_enrollment" value="${en.id}"></div><div><label>Výsledek programu</label><select name="enrollment_outcome">${opts(['','TM vyzískán','TM doplacen','TM vrácen'],en.outcome||'')}</select></div><div><label>Další spolupráce</label><select name="next_collaboration">${opts(['','Pokračuje na IČO','Končí spolupráci'],en.next_collaboration||'')}</select></div>`}let joined=o.joined_at||todayISO(),cp=currentNewcomerProgram(joined);return`<div><label>Start poradce</label><select name="onboarding_mode"><option value="">Bez programu / starší poradce</option><option value="earn_tm">Vyzískává Thermomix</option><option value="own_tm">Nastupuje s vlastním TM</option></select></div><div><label>Program při nástupu</label><select name="newcomer_program_id"><option value="">— vyber podle data nástupu —</option>${newcomerPrograms.map(p=>`<option value="${p.id}" ${cp?.id===p.id?'selected':''}>${esc(p.title)} (${fmt(p.valid_from)}–${fmt(p.valid_to)})</option>`).join('')}</select></div>`})()}<div><label>Přivedl/a poradce</label><select name="recruited_by_member_id">${recruiterOptions}</select></div><div><label>Telefon</label><input name="phone" value="${esc(o.phone)}"></div><div><label>E-mail</label><input name="email" type="email" value="${esc(o.email)}"></div><div><label>Původní počet prodejů</label><input name="sales_count" type="number" value="${o.sales_count||0}" readonly></div><div><label>Původní počet nováčků</label><input name="recruits_count" type="number" value="${o.recruits_count||0}" readonly></div><div class="full"><label>Zaměření / na co se soustředit</label><textarea name="focus_notes">${esc(o.focus_notes)}</textarea></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}let metric=o.kind==='Roční'?'both':(o.metric_type||'sales');let defaults=(o.kind||currentKind)==='Roční'?[{sales:7,reward:'Thermokoš'},{sales:8,reward:'Taška na kolečkách'},{sales:10,reward:'Sensor'},{sales:12,reward:'Kráječ 2v1'},{sales:14,reward:'2. nádoba'},{sales:19,reward:'iPad mini'},{sales:19,recruits:1,reward:'TM7 / VK7'}]:[];let src=(o.milestones&&o.milestones.length)?o.milestones:defaults;let milestones=src.map(m=>metric==='recruits'?`${m.recruits||m.sales||0}|${m.reward}`:`${m.sales||0}|${m.reward}|${m.recruits||''}`).join('\n');return`<div><label>Typ</label><select name="kind">${opts(['Roční','Měsíční','Týdenní','Denní'],o.kind||currentKind)}</select></div><div><label>Název</label><input name="title" required value="${esc(o.title)}"></div><div><label>Začátek</label><input name="start_date" type="date" value="${esc(o.start_date)}"></div><div><label>Konec</label><input name="end_date" type="date" value="${esc(o.end_date)}"></div><div><label>Soutěž se hodnotí podle</label><select name="metric_type"><option value="sales" ${metric==='sales'?'selected':''}>Prodeje</option><option value="recruits" ${metric==='recruits'?'selected':''}>ANC / nováčky</option><option value="both" ${metric==='both'?'selected':''}>Prodeje + ANC</option></select></div><div class="full"><label>Odměnové milníky</label><textarea name="milestones_text">${esc(milestones)}</textarea><div class="form-help">Prodeje: 1|Dárek · ANC: 1|Dárek · Obojí: 3|Dárek|1</div></div><div><label>Pravidlo nováčků</label><select name="qualification_rule"><option value="" ${!o.qualification_rule?'selected':''}>Všichni přivedení</option><option value="vian30" ${o.qualification_rule==='vian30'?'selected':''}>VIAN – prodej do 30 dnů</option></select></div><div class="full"><label>Poznámky</label><textarea name="notes">${esc(o.notes)}</textarea></div>`}
@@ -763,4 +946,138 @@ main{background:linear-gradient(135deg,#f7fcff 0%,#fbf8ff 48%,#fff8fc 100%)!impo
 @media(max-width:760px){.calendar-weekdays,.calendar-month{gap:3px!important}.calendar-cell{min-height:100px;padding:5px;border-radius:9px}.nameday{display:none}.calendar-event{font-size:7px;padding:3px}.calendar-weekdays b{font-size:10px;padding:6px 1px}}
 </style>
 
+
+<script id="lh552-statistics-events">
+document.addEventListener('change',function(e){
+  if(e.target?.id==='statisticsPeriod') renderStatistics(e.target.value,null,null);
+  if(e.target?.id==='rewardMemberFilter') renderStatistics(null,e.target.value,null);
+  if(e.target?.id==='rewardGiftFilter') renderStatistics(null,null,e.target.value);
+});
+</script>
+
+
+<script id="lh560-complete-fixes">
+(function(){
+  const norm=x=>String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  const memberByName=name=>members.find(m=>norm(m.full_name)===norm(name));
+  const compBy=(title,start)=>competitions.find(c=>norm(c.title)===norm(title)&&(!start||c.start_date===start));
+
+  async function upsertCompetition(payload,milestones){
+    let c=competitions.find(x=>norm(x.title)===norm(payload.title)&&x.start_date===payload.start_date);
+    if(!c){
+      let r=await sb.from('competitions').insert(payload).select('*');
+      if(r.error){console.warn('Competition insert',payload.title,r.error.message);return null}
+      c=r.data?.[0]; if(c)competitions.push(c);
+    }else{
+      let r=await sb.from('competitions').update(payload).eq('id',c.id).select('*');
+      if(!r.error&&r.data?.[0])Object.assign(c,r.data[0]);
+    }
+    if(!c)return null;
+    // Do not duplicate milestones.
+    for(const m of milestones||[]){
+      let exists=competitionMilestones(c).some(x=>Number(x.sales||0)===Number(m.sales||0)&&Number(x.recruits||0)===Number(m.recruits||0)&&norm(x.reward)===norm(m.reward));
+      if(!exists){
+        let payloadM={competition_id:c.id,sales:Number(m.sales||0),recruits:Number(m.recruits||0),reward:m.reward};
+        let rr=await sb.from('competition_milestones').insert(payloadM).select('*');
+        if(!rr.error&&rr.data)competitionMilestonesRows.push(...rr.data);
+      }
+    }
+    return c;
+  }
+
+  async function fixCutterOwnership(){
+    const kristyna=memberByName('Kristýna Thun'),eliska=memberByName('Eliška Komárková');
+    if(!kristyna||!eliska)return;
+    let cutter=competitions.find(c=>c.start_date==='2026-07-28'&&c.end_date==='2026-08-10'&&competitionMilestones(c).some(m=>norm(m.reward).includes('multifunkcni krajec')));
+    if(!cutter)return;
+    let ms=competitionMilestones(cutter).filter(m=>norm(m.reward).includes('multifunkcni krajec'));
+    for(const m of ms){
+      // Remove wrong persisted reward record for Eliška if present.
+      let wrong=rewardRecords.filter(r=>String(r.competition_id)===String(cutter.id)&&String(r.member_id)===String(eliska.id)&&(String(r.milestone_id||'')===String(m.id)||!r.milestone_id));
+      for(const r of wrong){let q=await sb.from('reward_records').delete().eq('id',r.id);if(!q.error)rewardRecords=rewardRecords.filter(x=>x.id!==r.id)}
+      // Persist Kristýna as the actual historical recipient.
+      let ok=rewardRecords.some(r=>String(r.competition_id)===String(cutter.id)&&String(r.member_id)===String(kristyna.id)&&(String(r.milestone_id||'')===String(m.id)||!r.milestone_id));
+      if(!ok){
+        let payload={competition_id:cutter.id,member_id:kristyna.id,milestone_id:m.id,achieved_at:'2026-08-10',status:'získáno'};
+        let q=await sb.from('reward_records').insert(payload).select('*');
+        if(!q.error&&q.data)rewardRecords.push(...q.data);
+      }
+    }
+    cutter._historicalWinnerMemberId=kristyna.id;
+  }
+
+  async function ensureOctober(){
+    await upsertCompetition({
+      title:'Říjen 2026 – Buďte aktivní a získejte dárek',
+      kind:'Měsíční',metric_type:'sales',start_date:'2026-09-29',end_date:'2026-10-26',
+      delivery_deadline:'2026-10-30',
+      notes:'1 TM = TM nůž na chléb. Odměny se nesčítají. Platí pro OP, TL a TLJ. Neplatí pro nováčky v základním programu / nováčky na vyzískání TM. Smlouvy 29. 9.–26. 10. 2026; call centrum do 27. 10. 2026 7:00; závoz 1.–30. 10. 2026. Vyhodnocení 12. 11. 2026; doručení odměn 30. 11. 2026.'
+    },[{sales:1,recruits:0,reward:'TM nůž na chléb'}]);
+
+    await upsertCompetition({
+      title:'Dárek pro VIAN nováčka aktivního do 30 dnů od nástupu',
+      kind:'Měsíční',metric_type:'sales',start_date:'2026-09-29',end_date:'2026-10-26',
+      delivery_deadline:'2026-10-30',
+      notes:'Pouze VIAN nováček aktivní do 30 dnů od nástupu. 1. prodej = Nester TM7; 2. prodej = Startovací sada. Vyhodnocení 9. 12. 2026; doručení odměn 22. 12. 2026.'
+    },[
+      {sales:1,recruits:0,reward:'Nester TM7'},
+      {sales:2,recruits:0,reward:'Startovací sada'}
+    ]);
+
+    // October extension of TM3 for you, preserving 100-day program.
+    if(!newcomerPrograms.some(p=>p.title==='Říjen 2026 – TM3 for you')){
+      let payload={title:'Říjen 2026 – TM3 for you',valid_from:'2026-09-29',valid_to:'2026-10-26',duration_days:100,target_sales:3,loyalty_offset:3,
+        rules:{base_price:39490,tiers:[
+          {sales:1,price:33741,discount:'10 %',base_price:37490},
+          {sales:2,price:24368,discount:'35 %',base_price:37490},
+          {sales:3,price:1,discount:'99,9 %',base_price:39490}
+        ],bonus_sale_4:'Po podpisu smlouvy o obchodním zastoupení: druhá kompletní mixovací nádoba za 0 Kč',commission_paid:false},
+        notes:'Mimořádné prodloužení TM3 for you do 26. 10. 2026. Základní program trvá 100 dní. Za prodeje v programu se nevyplácí provize.'};
+      let r=await sb.from('newcomer_programs').insert(payload).select('*');
+      if(!r.error&&r.data)newcomerPrograms.push(...r.data);
+    }
+  }
+
+  // Historical winner override for the cutter in all computations/UI.
+  const baseStatsFor=window.statsFor||statsFor;
+  if(typeof baseStatsFor==='function'){
+    window.statsFor=function(c,p){
+      let e=baseStatsFor(c,p);
+      if(c?._historicalWinnerMemberId){
+        let winner=String(p.id)===String(c._historicalWinnerMemberId);
+        return {...e,sales_count:winner?Math.max(1,Number(e.sales_count||0)):0};
+      }
+      return e;
+    }
+  }
+
+  async function run(){
+    if(!window.sb||!Array.isArray(window.competitions))return;
+    try{
+      await ensureOctober();
+      await fixCutterOwnership();
+      // Refresh current screens after data repair.
+      try{renderCompetitions()}catch(e){}
+      try{renderStatistics(window._lhStatisticsPeriod||null,window._lhRewardMember||null,window._lhRewardGift||null)}catch(e){}
+      try{renderDashboard()}catch(e){}
+    }catch(e){console.warn('LeaderHub 5.6 migration:',e)}
+  }
+  window.addEventListener('load',()=>setTimeout(run,1800));
+})();
+</script>
+
+
+<script id="lh560-branch-meetings">
+(function(){
+ const items={'2026-09-29':'🍞 Porada · Měsíc chleba','2026-10-05':'🍂 Porada · Den skořice','2026-10-12':'🍞 Porada · Mezinárodní den chleba','2026-10-19':'🍝 Porada · Den těstovin'};
+ function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+ function paint(){
+  let g=document.getElementById('calendarMonth'),t=document.getElementById('calendarMonthTitle');if(!g||!t||!g.children.length)return;
+  let names=['leden','únor','březen','duben','květen','červen','červenec','srpen','září','říjen','listopad','prosinec'],q=t.textContent.trim().toLowerCase(),m=names.findIndex(x=>q.startsWith(x)),y=Number((q.match(/\d{4}/)||[])[0]);if(m<0||!y)return;
+  let f=new Date(y,m,1,12),off=(f.getDay()+6)%7,st=new Date(y,m,1-off,12);
+  [...g.children].forEach((c,i)=>{let d=new Date(st);d.setDate(st.getDate()+i);let k=iso(d),label=items[k];if(label&&![...c.querySelectorAll('.calendar-event')].some(x=>x.textContent===label)){let e=document.createElement('div');e.className='calendar-event cal-big';e.textContent=label;c.appendChild(e)}})
+ }
+ document.addEventListener('DOMContentLoaded',()=>{let g=document.getElementById('calendarMonth');if(g)new MutationObserver(paint).observe(g,{childList:true});setTimeout(paint,900)});
+})();
+</script>
 </body></html>
